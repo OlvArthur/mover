@@ -55,7 +55,7 @@ export default function LandingPage() {
             mensalidade(<strong>É GRÁTIS</strong>).
           </h1>
 
-          <input type="text" placeholder="NOME" />
+          <input type="text" size={40} placeholder="NOME" />
           <input type="text" placeholder="CARGO" />
           <input type="text" placeholder="E-MAIL" />
           <input type="text" placeholder="EMPRESA" />

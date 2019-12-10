@@ -1,5 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 
+import background from '../assets/images/background3.png';
+
 export default createGlobalStyle`
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 * {
@@ -20,9 +22,8 @@ html,body,#root {
 
 body {
    /* background: #f5d558;*/
-    background: #445270;
-
-
+    background: url(${background}) no-repeat center top ;
+    background-size: 100% 100%;
   /* Para melhor definição das letras na página*/
   -webkit-font-smoothing: antialiased !important;
 }
