@@ -1,6 +1,19 @@
 import styled from 'styled-components';
 
-export const Container = styled.div``;
+import px2vw from '../../utils/px2vw';
+
+export const Container = styled.div`
+  flex: 1;
+  flex-wrap: wrap;
+
+  justify-content: center;
+  margin: ${px2vw(32)};
+  max-width: 100%;
+
+  @media (min-width: 1024px) {
+    flex-wrap: nowrap;
+  }
+`;
 
 export const Header = styled.header`
   margin: 10px 20px;
@@ -25,11 +38,11 @@ export const Description = styled.text`
     font-size: 40px;
     font-weight: bold;
     text-transform: uppercase;
-    color: #fff;
+    color: #333;
   }
 
   p {
-    color: #fff;
+    color: #333;
     margin: 0 70px;
     font-size: 22px;
     line-height: 30px;
@@ -52,16 +65,26 @@ export const Description = styled.text`
 
 export const FormBox = styled.form`
   display: flex;
-  flex: 1;
-  flex-direction: column;
-  margin-bottom: 25px auto;
-  margin-left: auto;
+
   background: #c1d0dc;
-  margin-top: 20px;
-  margin-right: 250px;
-  justify-items: center;
   border-radius: 9px;
-  height: 800px;
+  min-height: ${px2vw(200, 768)};
+  height: 100%;
+  flex-direction: column;
+  width: ${px2vw(320, 320)};
+  padding: ${px2vw(20)};
+
+  @media (min-width: 768px) {
+    width: ${px2vw(320, 768)};
+    min-height: ${px2vw(200, 768)};
+    height: 100%;
+  }
+
+  @media (min-width: 1024px) {
+    width: ${px2vw(500)};
+    min-height: ${px2vw(300)};
+    height: 100%;
+  }
 
   h1 {
     padding: 90px 0px 20px 0;
@@ -95,3 +118,11 @@ export const FormBox = styled.form`
     }
   }
 `;
+
+/*
+     flex: 1;
+  margin-left: auto;
+  margin-top: 20px;
+  margin-right: 250px;
+  justify-items: center;
+  */
