@@ -54,11 +54,11 @@ export const FormBox = styled.form`
   display: flex;
   flex: 1;
   flex-direction: column;
-  margin-bottom: 25px;
-  margin-left: 20px;
+  margin-bottom: 25px auto;
+  margin-left: auto;
   background: #c1d0dc;
   margin-top: 20px;
-  margin-right: 400px;
+  margin-right: 250px;
   justify-items: center;
   border-radius: 9px;
   height: 800px;
