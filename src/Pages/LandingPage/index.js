@@ -1,15 +1,10 @@
 import React from 'react';
 
-import logo from '../../assets/images/logo.png';
-import { Container, Header, Wrapper, Description, FormBox } from './styles';
+import { Container, Wrapper, Description, FormBox } from './styles';
 
 export default function LandingPage() {
   return (
     <Container>
-      <Header>
-        <img src={logo} alt="Logo Intregra" />
-      </Header>
-
       <Wrapper>
         <Description>
           <h1>Quanto custa os materias da sua obra?</h1>
