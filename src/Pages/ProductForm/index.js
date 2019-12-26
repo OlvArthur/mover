@@ -1,27 +1,59 @@
 import React, { Component } from 'react';
+import { MdAddShoppingCart } from 'react-icons/md';
 
-import { Container, Form } from './styles';
+import { ProductList } from './styles';
 import api from '../../services/api';
+import jsonApi from '../../services/jsonApi';
+import { formatPrice } from '../../utils/format';
 
 export default class ProductForm extends Component {
   state = {
     products: [],
+    images: [],
   };
 
   async componentDidMount() {
-    const response = await api.get('products');
-    const { products } = this.state;
+    const [produtos, productImage] = await Promise.all([
+      api.get('products'),
+      jsonApi.get('/images'),
+    ]);
 
-    this.setState({ products: [...products, response.data] });
+    const data = produtos.data.map(product => ({
+      ...product,
+      priceLP: formatPrice(product.LP),
+      priceJurunense: formatPrice(product.Jurunense),
+    }));
+
+    this.setState({
+      products: data,
+      images: productImage.data,
+    });
   }
 
   render() {
-    const { products } = this.state;
-    console.log(products);
+    const { products, images } = this.state;
+
     return (
-      <Container>
-        <Form />
-      </Container>
+      <ProductList>
+        {products.map(product => (
+          <li key={product.id}>
+            <img src={images[product.id].url} alt={product.description} />
+            <strong>
+              {product.description} {product.brand}
+            </strong>
+            <span>Jurunense: {product.priceJurunense}</span>
+            <span>Lojão do Pedreiro: {product.priceLP}</span>
+
+            <button type="button">
+              <div>
+                <MdAddShoppingCart size={20} color="#FFF" /> 3
+              </div>
+
+              <span>ADICIONAR AO CARRINHO</span>
+            </button>
+          </li>
+        ))}
+      </ProductList>
     );
   }
 }

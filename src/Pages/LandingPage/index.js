@@ -60,7 +60,6 @@ export default class LandingPage extends Component {
       companyName: companyName.value,
       numberOfEmployees: numberOfEmployees.value,
     };
-    console.log(data);
 
     const response = await api.post('/landingpage', {
       name: name.value,
@@ -70,7 +69,7 @@ export default class LandingPage extends Component {
       numberOfEmployees: numberOfEmployees.value,
     });
 
-    console.log(response);
+    console.log(data, response);
   };
 
   render() {

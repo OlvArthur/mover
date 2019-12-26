@@ -6,22 +6,19 @@ import px2vw from '../utils/px2vw';
 import background from '../assets/images/b6.jpg';
 
 export default createGlobalStyle`
-@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
-* {
+  @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
-  /*
-  Customização padrão global sugerida
-  */
-  margin:0;
-  padding:0;
-  outline: 0;
-  box-sizing: border-box;
+  * {
+    margin:0;
+    padding:0;
+    outline: 0;
+    box-sizing: border-box;
 }
 
-html,body,#root {
-  /*Permite que ocupem a pagina inteira */
-  min-height:100%;
-}
+#root {
+    margin: 0 auto;
+    padding: 0 20px 50px;
+  }
 
 :root {
       font-size: ${px2vw(24)};

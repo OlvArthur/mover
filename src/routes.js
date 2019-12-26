@@ -1,16 +1,16 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 import LandingPage from './Pages/LandingPage';
 import ProductForm from './Pages/ProductForm';
+import Cart from './Pages/Cart';
 
 export default function Routes() {
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route path="/landingpage" component={LandingPage} />
-        <Route path="/form" component={ProductForm} />
-      </Switch>
-    </BrowserRouter>
+    <Switch>
+      <Route path="/landingpage" component={LandingPage} />
+      <Route path="/form" component={ProductForm} />
+      <Route path="/cart" component={Cart} />
+    </Switch>
   );
 }

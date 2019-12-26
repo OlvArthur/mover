@@ -1,5 +1,51 @@
 {
   "products": [{ "id": 1, "title": "Argamassa", "type": "AC1" }],
   "comments": [{ "id": 1, "body": "some comment", "postId": 1 }],
-  "profile": { "name": "typicode" }
+  "profile": { "name": "typicode" },
+  "images": [
+    {
+      "id": 0,
+      "url": ""
+    },
+    {
+      "id:": 1,
+      "url": "https://telhanorte.vteximg.com.br/arquivos/seo-argamaca-rejunte-0.jpg?v=636262292076300000"
+    },
+    {
+      "id:": 2,
+      "url": "https://telhanorte.vteximg.com.br/arquivos/ids/309821-480-480/Argamassa-de-uso-externo-e-interno-AC3-flexivel-20kg-cinza-Quartzolit.jpg?v=636646666389400000"
+    },
+    {
+      "id:": 3,
+      "url": "http://t0.gstatic.com/images?q=tbn%3AANd9GcR154yXax9rqogR2vYL-HqMVYOIU6M_ln9lCLfwjpTiGSclnBDuJyEtupWiwynBFySMFk3ObDX-&usqp=CAc"
+    },
+    {
+      "id:": 4,
+      "url": "http://t0.gstatic.com/images?q=tbn%3AANd9GcSYpHAZcFzOH-NeBMt1AGxFv6e9b5CFFScifZ3qrA3i8a7-V1hPEbWpCdqBIcQqQq0MPLL-nGEH&usqp=CAc"
+    },
+    {
+      "id:": 5,
+      "url": "https://verbrascorp.websiteseguro.com/static/media/VERTEX_ECONOMICO_36L_46sAbjn.png"
+    },
+    {
+      "id:": 6,
+      "url": "https://www.lukscolor.com.br/public/uploads/produtos/mkplukscolorgalao36lluksclean-952.png"
+    },
+    {
+      "id:": 7,
+      "url": "https://www.ecompletocdn.com.br/i/fp/1909/1063005_2_1565807868.png"
+    },
+    {
+      "id:": 8,
+      "url": "http://www.cimentecsp.com.br/imagens-y/informacoes/venda-cimento-vargem-grande-paulista-01.jpg"
+    },
+    {
+      "id:": 9,
+      "url": "https://cdn.awsli.com.br/600x450/158/158648/produto/6825883/05a1e2f988.jpg"
+    },
+    {
+      "id:": 10,
+      "url": "https://cdn.awsli.com.br/600x450/158/158648/produto/6825883/05a1e2f988.jpg"
+    }
+  ]
 }
