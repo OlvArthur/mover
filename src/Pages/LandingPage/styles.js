@@ -98,7 +98,7 @@ export const FormBox = styled.form`
 
     border: 1px solid #eee;
     border-radius: 5px;
-    color: #fff;
+    color: #333;
   }
 
   button {
