@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { MdAddShoppingCart } from 'react-icons/md';
+import { connect } from 'react-redux';
 
 import { ProductList } from './styles';
 import api from '../../services/api';
 import jsonApi from '../../services/jsonApi';
 import { formatPrice } from '../../utils/format';
 
-export default class ProductForm extends Component {
+class ProductForm extends Component {
   state = {
     products: [],
     images: [],
@@ -30,6 +31,16 @@ export default class ProductForm extends Component {
     });
   }
 
+  handleAddProduct = (product, image) => {
+    const { dispatch } = this.props;
+
+    dispatch({
+      type: 'ADD_TO_CART',
+      product,
+      image,
+    });
+  };
+
   render() {
     const { products, images } = this.state;
 
@@ -44,7 +55,12 @@ export default class ProductForm extends Component {
             <span>Jurunense: {product.priceJurunense}</span>
             <span>Lojão do Pedreiro: {product.priceLP}</span>
 
-            <button type="button">
+            <button
+              type="button"
+              onClick={() =>
+                this.handleAddProduct(product, images[product.id].url)
+              }
+            >
               <div>
                 <MdAddShoppingCart size={20} color="#FFF" /> 3
               </div>
@@ -57,3 +73,5 @@ export default class ProductForm extends Component {
     );
   }
 }
+
+export default connect()(ProductForm);

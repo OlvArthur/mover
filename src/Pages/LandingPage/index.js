@@ -41,9 +41,7 @@ export default class LandingPage extends Component {
     });
   };
 
-  handleSubmit = async e => {
-    e.preventDefault();
-
+  handleSubmit = async () => {
     const { contractor } = this.state;
     const {
       name,
