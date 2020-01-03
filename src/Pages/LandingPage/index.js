@@ -51,23 +51,21 @@ export default class LandingPage extends Component {
       numberOfEmployees,
     } = contractor;
 
-    const data = {
+    /* const data = {
       name: name.value,
       position: position.value,
       email: email.value,
       companyName: companyName.value,
       numberOfEmployees: numberOfEmployees.value,
     };
-
-    const response = await api.post('/landingpage', {
+*/
+    await api.post('/landingpage', {
       name: name.value,
       position: position.value,
       email: email.value,
       companyName: companyName.value,
       numberOfEmployees: numberOfEmployees.value,
     });
-
-    console.log(data, response);
   };
 
   render() {

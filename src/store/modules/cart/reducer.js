@@ -4,8 +4,9 @@ export default function cart(state = [], action) {
       return [
         ...state,
         {
-          product: action.product,
+          ...action.product,
           image: action.image,
+          amount: 1,
         },
       ];
     default:

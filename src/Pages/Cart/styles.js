@@ -3,36 +3,8 @@ import { darken } from 'polished';
 
 export const Container = styled.div`
   padding: 30px;
-  background: #fff;
   border-radius: 4px;
   margin: 20px;
-
-  > div {
-    font-size: 30px;
-  }
-
-  footer {
-    margin-top: 30px;
-    padding: 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    button {
-      border: none;
-      border-radius: 4px;
-      color: #fff;
-      padding: 12px 20px;
-      font-weight: bold;
-      background: #7159c1;
-      margin-bottom: 5px;
-      transition: background 0.2s;
-
-      &:hover {
-        background: ${darken(0.03, '#7159c1')};
-      }
-    }
-  }
 `;
 
 export const ProductTable = styled.table`
@@ -97,5 +69,39 @@ export const Total = styled.div`
   strong {
     font-size: 28px;
     margin-left: 5px;
+  }
+`;
+
+export const Store = styled.div`
+  padding: 30px;
+  border-radius: 4px;
+  margin: 20px;
+  background: #fff;
+
+  > div {
+    font-size: 30px;
+  }
+
+  footer {
+    margin-top: 30px;
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    button {
+      border: none;
+      border-radius: 4px;
+      color: #fff;
+      padding: 12px 20px;
+      font-weight: bold;
+      background: #7159c1;
+      margin-bottom: 5px;
+      transition: background 0.2s;
+
+      &:hover {
+        background: ${darken(0.03, '#7159c1')};
+      }
+    }
   }
 `;
