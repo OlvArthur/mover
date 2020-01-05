@@ -47,6 +47,15 @@ export const ProductTable = styled.table`
       color: #666;
       padding: 6px;
       border-radius: 4px;
+      -webkit-appearance: none;
+    }
+    input[type='number']::-webkit-inner-spin-button,
+    input[type='number']::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+    }
+
+    input[type='number'] {
+      -moz-appearance: textfield;
     }
   }
 

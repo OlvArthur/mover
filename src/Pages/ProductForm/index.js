@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { MdAddShoppingCart } from 'react-icons/md';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import { ProductList } from './styles';
 import api from '../../services/api';
 import jsonApi from '../../services/jsonApi';
 import { formatPrice } from '../../utils/format';
+import * as CartActions from '../../store/modules/cart/actions';
 
 class ProductForm extends Component {
   state = {
@@ -32,13 +34,9 @@ class ProductForm extends Component {
   }
 
   handleAddProduct = (product, image) => {
-    const { dispatch } = this.props;
+    const { addToCart } = this.props;
 
-    dispatch({
-      type: 'ADD_TO_CART',
-      product,
-      image,
-    });
+    addToCart(product, image);
   };
 
   render() {
@@ -74,4 +72,7 @@ class ProductForm extends Component {
   }
 }
 
-export default connect()(ProductForm);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(CartActions, dispatch);
+
+export default connect(null, mapDispatchToProps)(ProductForm);
