@@ -7,8 +7,10 @@ import {
   MdAddCircleOutline,
   MdDelete,
 } from 'react-icons/md';
+import PropType from 'prop-types';
 
 import * as CartActions from '../../store/modules/cart/actions';
+import { formatPrice } from '../../utils/format';
 
 import { Container, ProductTable, Total, Store } from './styles';
 
@@ -48,7 +50,7 @@ function Cart({ products, removeFromCart, updateAmount }) {
                   </td>
                   <td>
                     <strong>{product.description}</strong>
-                    <span>{product.priceJurunense}</span>
+                    <span>{formatPrice(product.price)}</span>
                   </td>
                   <td>
                     <div>
@@ -68,7 +70,7 @@ function Cart({ products, removeFromCart, updateAmount }) {
                     </div>
                   </td>
                   <td>
-                    <strong>{product.priceJurunense * product.amount}</strong>
+                    <strong>{product.subtotal}</strong>
                   </td>
                   <td>
                     <button
@@ -114,7 +116,7 @@ function Cart({ products, removeFromCart, updateAmount }) {
                   </td>
                   <td>
                     <strong>{product.description}</strong>
-                    <span>{product.priceLP}</span>
+                    <span>{product.price}</span>
                   </td>
                   <td>
                     <div>
@@ -162,8 +164,19 @@ function Cart({ products, removeFromCart, updateAmount }) {
   );
 }
 
+Cart.propTypes = {
+  products: PropType.shape({
+    map: PropType.func,
+  }).isRequired,
+  removeFromCart: PropType.func.isRequired,
+  updateAmount: PropType.func.isRequired,
+};
+
 const mapStateToProps = state => ({
-  products: state.cart,
+  products: state.cart.map(product => ({
+    ...product,
+    subtotal: formatPrice(product.price * product.amount),
+  })),
 });
 
 const mapDispatchToProps = dispatch =>

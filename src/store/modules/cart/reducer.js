@@ -8,11 +8,19 @@ export default function cart(state = [], action) {
 
         if (productIndex >= 0) {
           draft[productIndex].amount += 1;
+        } else if (action.product.Jurunense > action.product.LP) {
+          draft.push({
+            ...action.product,
+            amount: 1,
+            image: action.image,
+            price: action.product.LP,
+          });
         } else {
           draft.push({
             ...action.product,
             amount: 1,
             image: action.image,
+            price: action.product.Jurunense,
           });
         }
       });

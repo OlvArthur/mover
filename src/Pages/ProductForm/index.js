@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { MdAddShoppingCart } from 'react-icons/md';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
 
 import { ProductList } from './styles';
 import api from '../../services/api';
@@ -13,6 +14,10 @@ class ProductForm extends Component {
   state = {
     products: [],
     images: [],
+  };
+
+  static propTypes = {
+    addToCart: PropTypes.func.isRequired,
   };
 
   async componentDidMount() {
