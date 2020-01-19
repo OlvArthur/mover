@@ -116,7 +116,7 @@ function Cart({ products, removeFromCart, updateAmount }) {
                   </td>
                   <td>
                     <strong>{product.description}</strong>
-                    <span>{product.price}</span>
+                    <span>{formatPrice(product.price)}</span>
                   </td>
                   <td>
                     <div>
@@ -136,7 +136,7 @@ function Cart({ products, removeFromCart, updateAmount }) {
                     </div>
                   </td>
                   <td>
-                    <strong>R$180,00</strong>
+                    <strong>{product.subtotal}</strong>
                   </td>
                   <td>
                     <button
