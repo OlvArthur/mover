@@ -21,6 +21,17 @@ class LoginBox extends Component {
     errors: '',
   };
 
+  handleChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  loginUser = e => {
+    e.preventDefault();
+    const { email } = this.state;
+
+    alert(`You are logged in as ${email}`);
+  };
+
   render() {
     const { email, password, errors } = this.state;
     const { clickedState, clicked } = this.props;
@@ -30,9 +41,9 @@ class LoginBox extends Component {
       <Container>
         <Spring onTop={onTop}>
           <BloomerBox>
-            <form>
+            <form onSubmit={this.loginUser}>
               <BloomerField>
-                <h1 style={{ marginBottom: '10em' }}>Login</h1>
+                <h1>Login</h1>
                 {errors ? (
                   <BloomerNotification isColor="danger">
                     {errors}

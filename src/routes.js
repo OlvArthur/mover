@@ -9,10 +9,10 @@ import LoginAndRegister from './Pages/LoginAndRegistration';
 export default function Routes() {
   return (
     <Switch>
+      <Route path="/" exact component={LoginAndRegister} />
       <Route path="/landingpage" component={LandingPage} />
       <Route path="/form" component={ProductForm} />
       <Route path="/cart" component={Cart} />
-      <Route path="/LoginAndRegister" component={LoginAndRegister} />
     </Switch>
   );
 }

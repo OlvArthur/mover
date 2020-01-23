@@ -17,7 +17,11 @@ export const Spring = styled(animated.div).attrs({
   config: { duration: 250 },
 })``;
 
-export const BloomerBox = styled(Box)``;
+export const BloomerBox = styled(Box)`
+  h1 {
+    margin-bottom: 10em;
+  }
+`;
 
 export const BloomerField = styled(Field)``;
 
