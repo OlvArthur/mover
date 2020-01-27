@@ -17,6 +17,10 @@ export default function Session() {
               <label>Email</label>
               <input type="text" name="email" required="required" />
             </div>
+            <div>
+              <label>Password</label>
+              <input name="password" type="password" required="required" />
+            </div>
           </form>
         </div>
       </FlexGrid>
