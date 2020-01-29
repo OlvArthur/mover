@@ -2,9 +2,13 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
-  padding: 20px;
-  padding-left: 25%;
-  padding-right: 25%;
+  background: #3349;
+  padding: 0 20%;
+  border-radius: 20px;
+
+  display: grid;
+  grid-template-rows: auto auto;
+  grid-gap: 70px;
 
   color: white;
 `;
@@ -12,7 +16,8 @@ export const Container = styled.div`
 export const Header = styled.header`
   margin: 50px 0 20px 0;
   box-sizing: border-box;
-  display: block;
+  display: flex;
+  justify-content: space-between;
   float: none;
   color: white;
 
@@ -22,7 +27,7 @@ export const Header = styled.header`
   }
 
   h2 {
-    font-size: 4.5rem;
+    font-size: 2.5rem;
     font-weight: normal;
   }
 `;
@@ -30,15 +35,12 @@ export const Header = styled.header`
 export const FlexGrid = styled.div`
   display: grid;
   grid-template-columns: auto auto auto;
+  grid-column-gap: 10%;
   flex-wrap: wrap;
-  line-height: 22.5px;
-  margin: 50px 0px 20px;
+  line-height: 20px;
+  margin: 0px 0px 20px;
+  justify-content: center;
   border: none;
-
-  div {
-    padding-right: 10%;
-    box-sizing: border-box;
-  }
 `;
 
 export const ForgotLink = styled(Link)`
@@ -47,9 +49,41 @@ export const ForgotLink = styled(Link)`
   display: block;
 `;
 
-export const Half = styled.div``;
+export const Half = styled.div`
+  div {
+    padding-right: 10%;
+    box-sizing: border-box;
+    font-size: 1.7rem;
 
-export const Divider = styled.div``;
+    & + div {
+      padding-top: 20px;
+    }
+  }
+`;
+
+export const Divider = styled.div`
+  width: 0%;
+  position: relative;
+
+  span {
+    position: absolute;
+    width: 46px;
+    height: 18%;
+    left: -23px;
+    border: 2px solid #fff;
+    top: 41%;
+    text-align: center;
+    display: flex;
+    border-radius: 10px;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    font-size: 1.2rem;
+    line-height: 30px;
+    color: #b7bbc8;
+  }
+`;
 
 export const RegisterLink = styled(Link)``;
 
@@ -57,6 +91,12 @@ export const Form = styled.form`
   width: 55%;
   display: block;
 
-  div {
+  button {
+    display: block;
+    padding: 0.5em 5em;
+    margin-bottom: 7px;
+    background: #7159c1;
+    border: none;
+    border-radius: 4px;
   }
 `;

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 
 import {
@@ -15,8 +16,11 @@ export default function Session() {
   return (
     <Container>
       <Header>
-        <h1>Intregra Login</h1>
-        <h2>Log In!</h2>
+        <div>
+          <h1>Intregra Login</h1>
+          <h2>Log In!</h2>
+        </div>
+        <h2>Registre-se</h2>
       </Header>
 
       <FlexGrid>
@@ -33,9 +37,7 @@ export default function Session() {
               </div>
 
               <div>
-                <button type="button">
-                  <span>Log In</span>
-                </button>
+                <button type="button">Log In</button>
 
                 <ForgotLink to="/forgotPassword">Forgot Password?</ForgotLink>
               </div>
@@ -44,24 +46,32 @@ export default function Session() {
         </Half>
         <Divider>
           <div name="top-bar" />
-          <span>OR</span>
+          <span>OU</span>
           <div name="bottom-bar" />
         </Divider>
 
         <Half>
           <div>
-            <label>Email</label>
-            <input type="text" name="email" />
-          </div>
+            <Form>
+              <div>
+                <label>Email</label>
+                <input type="text" name="email" />
+              </div>
 
-          <div>
-            <label>Nome da Empresa</label>
-            <input type="text" />
-          </div>
+              <div>
+                <label>Empresa</label>
+                <input type="text" />
+              </div>
 
-          <div>
-            <label>Senha</label>
-            <input type="password" name="password" />
+              <div>
+                <label>Senha</label>
+                <input type="password" name="password" />
+              </div>
+
+              <div>
+                <button type="button">Registre-se</button>
+              </div>
+            </Form>
           </div>
         </Half>
 
