@@ -18,23 +18,37 @@ export const Cart = styled(Link)`
   align-items: center;
   text-decoration: none;
   transition: opacity 0.2s;
+  padding: 0.5%;
+  border-radius: 4px;
+  width: 200px;
 
   &:hover {
     opacity: 0.7;
   }
 
   div {
+    width: 50%;
+    margin: 0 auto;
     text-align: right;
-    margin-right: 10px;
 
     strong {
-      display: block;
-      color: #333;
+      display: flex;
+      color: white;
     }
 
     span {
       font-size: 12px;
-      color: #333;
+      color: white;
     }
   }
+`;
+
+export const Links = styled.div`
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: opacity 0.2s;
+  background: #3349;
+  padding: 0.5%;
+  border-radius: 4px;
 `;
