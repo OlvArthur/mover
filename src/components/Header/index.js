@@ -10,27 +10,32 @@ import api from '../../services/api';
 class Header extends Component {
   state = {
     query: '',
-    results: [],
-  };
-
-  apiRequest = async () => {
-    const response = await api.get('http://localhost:3333/products');
-
-    console.tron.log(response);
-
-    return response;
+    data: [],
   };
 
   handleInputChange = () => {
     this.setState({
       query: this.search.value,
     });
-
     this.apiRequest();
+  };
+
+  apiRequest = async () => {
+    const { query } = this.state;
+
+    const response = await api.get('http://localhost:3333/products', {
+      params: {
+        query,
+      },
+    });
+    this.setState({
+      data: response,
+    });
   };
 
   render() {
     const { cartSize } = this.props;
+    const { data } = this.state;
 
     return (
       <Container>
@@ -44,7 +49,12 @@ class Header extends Component {
             ref={input => (this.search = input)}
             onChange={this.handleInputChange}
           />
-          <Link to="search">
+          <Link
+            to={{
+              pathname: '/search',
+              data,
+            }}
+          >
             <MdSearch />
           </Link>
         </form>
