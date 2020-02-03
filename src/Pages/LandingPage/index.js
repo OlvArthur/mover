@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactSearchBox from 'react-search-box';
 
 import { Container, Wrapper, Description, FormBox } from './styles';
 import api from '../../services/api';
@@ -71,6 +72,11 @@ export default class LandingPage extends Component {
   render() {
     return (
       <Container>
+        <ReactSearchBox
+          placeholder="Buscar produto"
+          data={this.state}
+          callback={record => console.tron.log(record)}
+        />
         <Wrapper>
           <Description>
             <h1>Quanto custa os materias da sua obra?</h1>
