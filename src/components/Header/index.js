@@ -13,9 +13,9 @@ class Header extends Component {
     data: [],
   };
 
-  handleInputChange = () => {
-    this.setState({
-      query: this.search.value,
+  handleInputChange = async e => {
+    await this.setState({
+      query: e.target.value,
     });
     this.apiRequest();
   };
@@ -46,7 +46,7 @@ class Header extends Component {
         <form>
           <input
             placeholder="Search for..."
-            ref={input => (this.search = input)}
+            // ref={input => (this.search = input)}
             onChange={this.handleInputChange}
           />
           <Link
@@ -55,7 +55,9 @@ class Header extends Component {
               data,
             }}
           >
-            <MdSearch />
+            <button type="button">
+              <MdSearch />
+            </button>
           </Link>
         </form>
 

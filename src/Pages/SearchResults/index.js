@@ -1,28 +1,24 @@
-import React, { Component } from 'react';
-import Suggestion from '../../components/Suggestions';
+import React from 'react';
 
-// import { Container } from './styles';
+import { formatPrice } from '../../utils/format';
+import { Container, ProductList } from './styles';
 
-export default class SearchResults extends Component {
-  handleInputChange = () => {
-    this.setState({
-      query: this.search.value,
-    });
-  };
+export default function SearchResults({ location }) {
+  const { data } = location;
 
-  render() {
-    const { data } = this.props.location;
-
-    return (
-      <form>
-        <input
-          placeholder="Search for..."
-          ref={input => (this.search = input)}
-          onChange={this.handleInputChange}
-        />
-
-        <Suggestion data={data} />
-      </form>
-    );
-  }
+  return (
+    <Container>
+      <ProductList>
+        {data.data.map(product => (
+          <li key={product.id}>
+            <strong>
+              {product.description} {product.brand}
+            </strong>
+            <span>Jurunense: {formatPrice(product.Jurunense)}</span>
+            <span>Lojão do Pedreiro: {formatPrice(product.LP)}</span>
+          </li>
+        ))}
+      </ProductList>
+    </Container>
+  );
 }

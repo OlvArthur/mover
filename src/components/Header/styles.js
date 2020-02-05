@@ -51,4 +51,9 @@ export const Links = styled.div`
   background: #3349;
   padding: 0.5%;
   border-radius: 4px;
+
+  strong {
+    margin-right: 5px;
+    text-decoration: none;
+  }
 `;
