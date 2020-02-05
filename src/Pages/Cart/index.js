@@ -45,9 +45,7 @@ function Cart({ products, removeFromCart, updateAmount }) {
             <tbody key={product.id}>
               {product.Jurunense < product.LP && (
                 <tr>
-                  <td>
-                    <img src={product.image} alt={product.description} />
-                  </td>
+                  <td />
                   <td>
                     <strong>{product.description}</strong>
                     <span>{formatPrice(product.price)}</span>
@@ -86,7 +84,7 @@ function Cart({ products, removeFromCart, updateAmount }) {
           ))}
         </ProductTable>
         <footer>
-          <button type="button">APROVAR O PEDIDO</button>
+          <button type="button">VERIFICAR DISPONIBILIDADE</button>
 
           <Total>
             <span>TOTAL</span>
@@ -152,7 +150,7 @@ function Cart({ products, removeFromCart, updateAmount }) {
           ))}
         </ProductTable>
         <footer>
-          <button type="button">APROVAR O PEDIDO</button>
+          <button type="button">VERIFICAR DISPONIBILIDADE</button>
 
           <Total>
             <span>TOTAL</span>

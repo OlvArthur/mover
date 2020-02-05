@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 
 import { ProductList } from './styles';
 import api from '../../services/api';
-import jsonApi from '../../services/jsonApi';
 import { formatPrice } from '../../utils/format';
 import * as CartActions from '../../store/modules/cart/actions';
 
@@ -21,12 +20,9 @@ class ProductForm extends Component {
   };
 
   async componentDidMount() {
-    const [produtos, productImage] = await Promise.all([
-      api.get('products'),
-      jsonApi.get('/images'),
-    ]);
+    const products = await api.get('http://localhost:3333/products');
 
-    const data = produtos.data.map(product => ({
+    const data = products.data.map(product => ({
       ...product,
       priceLP: formatPrice(product.LP),
       priceJurunense: formatPrice(product.Jurunense),
@@ -34,7 +30,6 @@ class ProductForm extends Component {
 
     this.setState({
       products: data,
-      images: productImage.data,
     });
   }
 
@@ -45,13 +40,12 @@ class ProductForm extends Component {
   };
 
   render() {
-    const { products, images } = this.state;
+    const { products } = this.state;
 
     return (
       <ProductList>
         {products.map(product => (
           <li key={product.id}>
-            <img src={images[product.id].url} alt={product.description} />
             <strong>
               {product.description} {product.brand}
             </strong>
@@ -60,9 +54,7 @@ class ProductForm extends Component {
 
             <button
               type="button"
-              onClick={() =>
-                this.handleAddProduct(product, images[product.id].url)
-              }
+              onClick={() => this.handleAddProduct(product)}
             >
               <div>
                 <MdAddShoppingCart size={20} color="#FFF" /> 3
