@@ -1,38 +1,22 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
-
-import { Container, Header, Form, RegisterLink } from './styles';
+import { Link } from 'react-router-dom';
+import { Container, Form } from './styles';
+import logo from '../../../assets/images/logo.png';
 
 export default function Session() {
   return (
     <Container>
-      <Header>
-        <h1>Intregra Login</h1>
-        <h2>Registre-se</h2>
-      </Header>
-
       <Form>
-        <div>
-          <label>Email</label>
-          <input type="text" name="email" />
-        </div>
+        <img src={logo} alt="Intregra" />
 
-        <div>
-          <label>Empresa</label>
-          <input type="text" />
-        </div>
+        <input required="required" placeholder="CNPJ" />
+        <input type="email" required="required" placeholder="Seu email" />
+        <input name="password" required="required" placeholder="Sua senha" />
 
-        <div>
-          <label>Senha</label>
-          <input type="password" name="password" />
-        </div>
+        <button type="submit">Criar Conta</button>
 
-        <div>
-          <button type="button">Registre-se</button>
-        </div>
+        <Link to="/">Já tenho login</Link>
       </Form>
-
-      <RegisterLink to="/Register" />
     </Container>
   );
 }

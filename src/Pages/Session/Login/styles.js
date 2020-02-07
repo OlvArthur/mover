@@ -1,57 +1,76 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { darken } from 'polished';
 
 export const Container = styled.div`
   background: #3349;
   border-radius: 10px;
   margin: 0 20%;
 
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
 
   color: white;
-`;
 
-export const Header = styled.header`
-  h1 {
-    margin: 0 0 0 0 -6px;
-    font: 0/0 a;
-  }
-
-  h2 {
-    font-size: 2.5rem;
-    font-weight: normal;
+  img {
+    width: 180px;
+    height: 45px;
+    margin-bottom: 30px;
+    margin-top: 10px;
   }
 `;
 
 export const Form = styled.form`
-  margin-top: 5%;
-
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
   margin-left: auto;
   margin-right: auto;
 
   font-size: 1.7rem;
 
-  div {
-    & + div {
-      padding-top: 20px;
+  input {
+    background: rgba(0, 0, 0, 0.1);
+    border: 0;
+    border-radius: 4px;
+    height: 44px;
+    padding: 0 15px;
+    color: #fff;
+    margin: 0 0 10px;
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.7);
     }
   }
 
-  label {
-    display: flex;
-    flex: 1;
-  }
   button {
-    text-align: center;
-    margin: auto;
-    display: block;
-    padding: 0.5em 5em;
-    margin-bottom: 7px;
-    background: #7159c1;
-    border: none;
+    margin: 5px 0 0;
+    height: 44px;
+    color: #fff;
+    border: 0;
     border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    background: #ab59c1;
+    transition: background 0.2s;
+
+    &:hover {
+      background: ${darken(0.06, '#ab59c1')};
+    }
+  }
+
+  a {
+    text-decoration: none;
+
+    color: #fff;
+    margin-top: 15px;
+    font-size: 16px;
+    opacity: 0.8;
+
+    &:hover {
+      opacity: 1;
+    }
   }
 `;
 

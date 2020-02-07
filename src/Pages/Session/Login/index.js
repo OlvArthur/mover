@@ -1,31 +1,33 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-import { Container, Header, ForgotLink, Form } from './styles';
+import { Container, Form } from './styles';
+import logo from '../../../assets/images/logo.png';
 
-export default function Login() {
-  return (
-    <Container>
-      <Header>
-        <h1>Intregra Login</h1>
-        <h2>Log In!</h2>
-      </Header>
+class Login extends Component {
+  state = {
+    uid: '',
+    password: '',
+  };
 
-      <Form>
-        <div>
-          <label>Email</label>
-          <input type="text" name="email" required="required" />
-        </div>
-        <div>
-          <label>Password</label>
-          <input name="password" type="password" required="required" />
-        </div>
+  render() {
+    return (
+      <Container>
+        <Form onSubmit={() => this.handleLogin}>
+          <img src={logo} alt="Intregra" />
 
-        <div>
-          <button type="button">Log In</button>
+          <input type="email" required="required" placeholder="Seu email" />
+          <input name="password" required="required" placeholder="Sua senha" />
 
-          <ForgotLink to="/forgotPassword">Forgot Password?</ForgotLink>
-        </div>
-      </Form>
-    </Container>
-  );
+          <button type="submit">Log In</button>
+
+          <Link to="/register">Criar conta</Link>
+          <Link to="/forgotPassword">Esqueceu sua senha?</Link>
+        </Form>
+      </Container>
+    );
+  }
 }
+
+export default connect()(Login);
