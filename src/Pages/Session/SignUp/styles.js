@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { darken } from 'polished';
+import { Form } from '@rocketseat/unform';
 
 export const Container = styled.div`
   background: #3349;
@@ -21,7 +22,7 @@ export const Container = styled.div`
   }
 `;
 
-export const Form = styled.form`
+export const StyledForm = styled(Form)`
   display: flex;
   flex-direction: column;
   margin-left: auto;
