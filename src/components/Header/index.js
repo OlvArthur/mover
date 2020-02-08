@@ -23,7 +23,7 @@ class Header extends Component {
   apiRequest = async () => {
     const { query } = this.state;
 
-    const response = await api.get('http://localhost:3333/products', {
+    const response = await api.get('products', {
       params: {
         query,
       },
