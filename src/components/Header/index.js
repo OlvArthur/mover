@@ -15,7 +15,7 @@ class Header extends Component {
 
   handleInputChange = async e => {
     await this.setState({
-      query: e.target.value,
+      query: e.target.value.toLowerCase(),
     });
     this.apiRequest();
   };

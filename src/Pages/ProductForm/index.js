@@ -12,7 +12,6 @@ import * as CartActions from '../../store/modules/cart/actions';
 class ProductForm extends Component {
   state = {
     products: [],
-    images: [],
   };
 
   static propTypes = {
@@ -47,7 +46,7 @@ class ProductForm extends Component {
         {products.map(product => (
           <li key={product.id}>
             <strong>
-              {product.description} {product.brand}
+              {product.description.toUpperCase()} {product.brand.toUpperCase()}
             </strong>
             <span>Jurunense: {product.priceJurunense}</span>
             <span>Lojão do Pedreiro: {product.priceLP}</span>
