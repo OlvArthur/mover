@@ -20,7 +20,7 @@ class ProductForm extends Component {
   };
 
   async componentDidMount() {
-    const products = await api.get('http://localhost:3333/products');
+    const products = await api.get('/products');
 
     const data = products.data.map(product => ({
       ...product,
