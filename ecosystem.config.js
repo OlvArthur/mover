@@ -7,7 +7,7 @@ module.exports = {
 
       // Options reference: https://pm2.keymetrics.io/docs/usage/application-declaration/
       // args: 'one two',
-      args: 'serve build -s',
+      args: 'serve -s build -l 3000',
       instances: 1,
       autorestart: true,
       watch: true,
