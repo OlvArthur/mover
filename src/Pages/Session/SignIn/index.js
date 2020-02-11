@@ -2,9 +2,17 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Input } from '@rocketseat/unform';
+import * as Yup from 'yup';
 
 import { Container, StyledForm } from './styles';
 import logo from '../../../assets/images/logo.png';
+
+const schema = Yup.object().shape({
+  email: Yup.string()
+    .email('insira um e-mail válido')
+    .required('O e-mail é obrigatório'),
+  password: Yup.string().required('A senha é obrigatória'),
+});
 
 function SignIn() {
   function handleSubmit(data) {
@@ -13,7 +21,7 @@ function SignIn() {
 
   return (
     <Container>
-      <StyledForm onSubmit={handleSubmit}>
+      <StyledForm schema={schema} onSubmit={handleSubmit}>
         <img src={logo} alt="Intregra" />
 
         <Input
