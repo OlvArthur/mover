@@ -4,10 +4,12 @@ import { Provider } from 'react-redux';
 
 import './config/ReactotronConfig';
 
+import Routes from './routes';
+
+import store from './store';
+
 import GlobalStyle from './styles/global';
 import Header from './components/Header';
-import store from './store';
-import Routes from './routes';
 
 export default function App() {
   return (

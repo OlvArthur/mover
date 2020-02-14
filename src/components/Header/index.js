@@ -23,19 +23,21 @@ class Header extends Component {
   apiRequest = async () => {
     const { query } = this.state;
 
-    const response = await api.get('products', {
-      params: {
-        query,
-      },
-    });
-    this.setState({
-      data: response,
-    });
+    if (query.length !== 0) {
+      const response = await api.get('/products', {
+        params: {
+          query,
+        },
+      });
+      this.setState({
+        data: response,
+      });
+    }
   };
 
   render() {
     const { cartSize } = this.props;
-    const { data } = this.state;
+    const { data, query } = this.state;
 
     return (
       <Container>
@@ -49,16 +51,18 @@ class Header extends Component {
             // ref={input => (this.search = input)}
             onChange={this.handleInputChange}
           />
-          <Link
-            to={{
-              pathname: '/search',
-              data,
-            }}
-          >
-            <button type="button">
-              <MdSearch />
-            </button>
-          </Link>
+          {query !== '' && (
+            <Link
+              to={{
+                pathname: '/search',
+                data,
+              }}
+            >
+              <button type="button">
+                <MdSearch />
+              </button>
+            </Link>
+          )}
         </form>
 
         <Links>

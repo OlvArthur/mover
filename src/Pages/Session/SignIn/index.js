@@ -1,11 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { Input } from '@rocketseat/unform';
 import * as Yup from 'yup';
+import PropTypes from 'prop-types';
 
 import { Container, StyledForm } from './styles';
 import logo from '../../../assets/images/logo.png';
+import api from '../../../services/api';
+import { login } from '../../../services/auth';
 
 const schema = Yup.object().shape({
   email: Yup.string()
@@ -14,9 +17,26 @@ const schema = Yup.object().shape({
   password: Yup.string().required('A senha é obrigatória'),
 });
 
-function SignIn() {
-  function handleSubmit(data) {
-    console.tron.log(data.email);
+function SignIn({ history }) {
+  async function handleSubmit({ email, password }) {
+    try {
+      const response = await api.post('/sessions', {
+        uid: email,
+        password,
+      });
+
+      await login(response.data.token);
+
+      const user = await api.get('/sessions', {
+        params: {
+          email,
+        },
+      });
+      history.push('/form');
+      console.tron.log(user.data[0]);
+    } catch (err) {
+      return 'Favor verifique seu login';
+    }
   }
 
   return (
@@ -46,4 +66,9 @@ function SignIn() {
   );
 }
 
-export default connect()(SignIn);
+SignIn.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
+};
+export default connect()(withRouter(SignIn));
