@@ -37,6 +37,8 @@ function SignIn({ history }) {
     } catch (err) {
       return 'Favor verifique seu login';
     }
+
+    return 'Anything';
   }
 
   return (
