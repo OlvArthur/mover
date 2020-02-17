@@ -1,5 +1,6 @@
 import { takeLatest, call, put, all } from 'redux-saga/effects';
 
+import history from '../../../services/history';
 import api from '../../../services/api';
 import { login } from '../../../services/auth';
 import { SignInSucess } from './actions';
@@ -12,19 +13,12 @@ export function* SignIn({ payload }) {
     password,
   });
 
-  const { token } = response.data;
+  const user = response.data;
 
-  yield call(login, token);
+  login(user.token);
 
-  const userData = yield call(api.get, 'sessions', {
-    params: {
-      email,
-    },
-  });
-
-  const user = userData.data[0];
-
-  yield put(SignInSucess(token, user));
+  yield put(SignInSucess(user));
+  history.push('/form');
 }
 
 export default all([takeLatest('@auth/SIGN_IN_REQUEST', SignIn)]);

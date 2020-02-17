@@ -1,14 +1,14 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { Input } from '@rocketseat/unform';
 import * as Yup from 'yup';
 import PropTypes from 'prop-types';
 
+import { signInRequest } from '../../../store/modules/auth/actions';
+
 import { Container, StyledForm } from './styles';
 import logo from '../../../assets/images/logo.png';
-import api from '../../../services/api';
-import { login } from '../../../services/auth';
 
 const schema = Yup.object().shape({
   email: Yup.string()
@@ -17,9 +17,13 @@ const schema = Yup.object().shape({
   password: Yup.string().required('A senha é obrigatória'),
 });
 
-function SignIn({ history }) {
+function SignIn() {
+  const dispatch = useDispatch();
+
   async function handleSubmit({ email, password }) {
-    try {
+    dispatch(signInRequest(email, password));
+
+    /* try {
       const response = await api.post('/sessions', {
         uid: email,
         password,
@@ -36,7 +40,7 @@ function SignIn({ history }) {
       console.tron.log(user.data[0]);
     } catch (err) {
       return 'Favor verifique seu login';
-    }
+    } */
 
     return 'Anything';
   }
@@ -73,4 +77,4 @@ SignIn.propTypes = {
     push: PropTypes.func,
   }).isRequired,
 };
-export default connect()(withRouter(SignIn));
+export default withRouter(SignIn);
