@@ -23,25 +23,6 @@ function SignIn() {
   async function handleSubmit({ email, password }) {
     dispatch(signInRequest(email, password));
 
-    /* try {
-      const response = await api.post('/sessions', {
-        uid: email,
-        password,
-      });
-
-      await login(response.data.token);
-
-      const user = await api.get('/sessions', {
-        params: {
-          email,
-        },
-      });
-      history.push('/form');
-      console.tron.log(user.data[0]);
-    } catch (err) {
-      return 'Favor verifique seu login';
-    } */
-
     return 'Anything';
   }
 
