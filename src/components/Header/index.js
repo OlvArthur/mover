@@ -4,7 +4,7 @@ import { MdShoppingBasket, MdSearch } from 'react-icons/md';
 import { connect } from 'react-redux';
 
 import logo from '../../assets/images/logo.png';
-import { Container, Cart, Links } from './styles';
+import { Container, Cart, Links, Box } from './styles';
 import api from '../../services/api';
 
 class Header extends Component {
@@ -37,7 +37,7 @@ class Header extends Component {
 
   render() {
     const { cartSize } = this.props;
-    const { data, query } = this.state;
+    const { data } = this.state;
 
     return (
       <Container>
@@ -45,25 +45,27 @@ class Header extends Component {
           <img src={logo} alt="Logo Intregra" />
         </Link>
 
-        <form>
-          <input
-            placeholder="Search for..."
-            // ref={input => (this.search = input)}
-            onChange={this.handleInputChange}
-          />
-          {query !== '' && (
-            <Link
-              to={{
-                pathname: '/search',
-                data,
-              }}
-            >
-              <button type="button">
-                <MdSearch />
-              </button>
-            </Link>
-          )}
-        </form>
+        <Box>
+          <div>
+            <form>
+              <input
+                placeholder="Search for..."
+                // ref={input => (this.search = input)}
+                onChange={this.handleInputChange}
+              />
+              <Link
+                to={{
+                  pathname: '/search',
+                  data,
+                }}
+              >
+                <button type="button">
+                  <MdSearch />
+                </button>
+              </Link>
+            </form>
+          </div>
+        </Box>
 
         <Links>
           <Link to="/register">
@@ -77,7 +79,7 @@ class Header extends Component {
               <strong>Meu Carrinho</strong>
               <span>{cartSize} itens</span>
             </div>
-            <MdShoppingBasket size={36} color="#FFF" />
+            <MdShoppingBasket size={36} color="#333" />
           </Cart>
         </Links>
       </Container>
