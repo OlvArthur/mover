@@ -1,14 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Input } from '@rocketseat/unform';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 
 import { Container, StyledForm } from './styles';
 import logo from '../../../assets/images/logo.png';
 
+import { SignUpRequest } from '../../../store/modules/auth/actions';
+
 const schema = Yup.object().shape({
-  CNPJ: Yup.string().required('Seu CNPJ é obrigatório'),
+  company: Yup.string().required('Nome da empresa é obrigatório'),
+  cnpj: Yup.string().required('Seu CNPJ é obrigatório'),
   email: Yup.string()
     .email('insira um e-mail válido')
     .required('O e-mail é obrigatório'),
@@ -18,8 +21,10 @@ const schema = Yup.object().shape({
 });
 
 function SignUp() {
-  function handleSubmit(data) {
-    console.tron.log(data);
+  const dispatch = useDispatch();
+
+  function handleSubmit({ company, cnpj, email, password }) {
+    dispatch(SignUpRequest(company, cnpj, email, password));
   }
 
   return (
@@ -27,7 +32,12 @@ function SignUp() {
       <StyledForm schema={schema} onSubmit={handleSubmit}>
         <img src={logo} alt="Intregra" />
 
-        <Input name="CNPJ" required="required" placeholder="CNPJ" />
+        <Input
+          name="company"
+          required="required"
+          placeholder="Nome da empresa"
+        />
+        <Input name="cnpj" required="required" placeholder="CNPJ" />
         <Input
           name="email"
           type="email"

@@ -15,14 +15,50 @@ export function* SignIn({ payload }) {
 
     const user = response.data;
 
+    api.defaults.headers.Authorization = `Bearer ${user.token}`;
+
     yield put(SignInSucess(user));
+
     toast.success('Bem vindo');
+
     history.push('/form');
   } catch (err) {
-    console.tron.log(err);
     toast.error('Falha na autenticação, verifique seus dados');
     yield put(SignFailure());
   }
 }
 
-export default all([takeLatest('@auth/SIGN_IN_REQUEST', SignIn)]);
+export function* SignUp({ payload }) {
+  try {
+    const { company, cnpj, email, password } = payload;
+
+    yield call(api.post, 'users', {
+      companyName: company,
+      CNPJ: cnpj,
+      email,
+      password,
+    });
+
+    history.push('/');
+  } catch (err) {
+    toast.error('Falha no cadastro, verifique seus dados');
+
+    yield put(SignFailure());
+  }
+}
+
+export function setToken({ payload }) {
+  if (!payload) return;
+
+  const { token } = payload.auth;
+
+  if (token) {
+    api.defaults.headers.Authorization = `Bearer ${token}`;
+  }
+}
+
+export default all([
+  takeLatest('persist/REHYDRATE', setToken),
+  takeLatest('@auth/SIGN_IN_REQUEST', SignIn),
+  takeLatest('@auth/SIGN_UP_REQUEST', SignUp),
+]);
