@@ -19,7 +19,7 @@ export function* SignIn({ payload }) {
 
     yield put(SignInSucess(user));
 
-    toast.success('Bem vindo');
+    toast.success(`Seja bem vindo(a), ${user.companyName}!`);
 
     history.push('/form');
   } catch (err) {

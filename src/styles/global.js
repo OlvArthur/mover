@@ -34,8 +34,8 @@ export default createGlobalStyle`
     }
 
 body {
-   /* background: #f5d558;*/
-    background: url(${background}) no-repeat center fixed ;
+    background: linear-gradient(-90deg, #0F2027,#203A43,#2C5364 );
+  /* background: url(${background}) no-repeat center fixed ; */
     background-size: 100% 100%;
   /* Para melhor definição das letras na página*/
   -webkit-font-smoothing: antialiased !important;
