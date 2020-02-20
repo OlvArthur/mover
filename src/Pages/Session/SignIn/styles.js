@@ -6,8 +6,7 @@ import { Form } from '@rocketseat/unform';
 export const Container = styled.div`
   background: #3349;
   border-radius: 10px;
-  margin: 0 20%;
-
+  margin: 10% 20%;
   display: flex;
   justify-content: center;
   align-items: center;
