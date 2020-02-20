@@ -1,13 +1,62 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { useDispatch, connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { MdShoppingBasket, MdSearch } from 'react-icons/md';
-import { connect } from 'react-redux';
+import { Input, Form } from '@rocketseat/unform';
 
 import logo from '../../assets/images/logo.png';
+import { SearchRequest } from '../../store/modules/search/actions';
 import { Container, Cart, Links, Box } from './styles';
-import api from '../../services/api';
 
-class Header extends Component {
+function Header({ cartSize }) {
+  const dispatch = useDispatch();
+
+  async function apiRequest({ query }) {
+    dispatch(SearchRequest(query));
+  }
+
+  return (
+    <Container>
+      <Link to="/form">
+        <img src={logo} alt="Logo Intregra" />
+      </Link>
+
+      <Box>
+        <div>
+          <Form onSubmit={apiRequest}>
+            <Input name="query" placeholder="Search for..." />
+
+            <button type="submit">
+              <MdSearch />
+            </button>
+          </Form>
+        </div>
+      </Box>
+
+      <Links>
+        <Link to="/register">
+          <strong>Sign Up</strong>
+        </Link>
+        <Link to="/">
+          <strong>Login</strong>
+        </Link>
+        <Cart to="/cart">
+          <div>
+            <strong>Meu Carrinho</strong>
+            <span>{cartSize} itens</span>
+          </div>
+          <MdShoppingBasket size={36} color="#333" />
+        </Cart>
+      </Links>
+    </Container>
+  );
+}
+
+export default connect(state => ({
+  cartSize: state.cart.length,
+}))(Header);
+
+/* class Header extends Component {
   state = {
     query: '',
     data: [],
@@ -90,3 +139,4 @@ class Header extends Component {
 export default connect(state => ({
   cartSize: state.cart.length,
 }))(Header);
+*/

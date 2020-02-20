@@ -20,7 +20,6 @@ export default function App() {
       <PersistGate persistor={persistor}>
         <BrowserRouter>
           <Router history={history}>
-            <Header />
             <Routes />
             <GlobalStyle />
             <ToastContainer autoClose={3000} />
