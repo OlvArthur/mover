@@ -6,7 +6,6 @@ export const Container = styled.header`
   justify-content: space-between;
   align-items: center;
   background: #fff;
-  margin-bottom: 5%;
 
   img {
     width: 180px;
@@ -17,7 +16,7 @@ export const Container = styled.header`
 export const Box = styled.div`
   width: 80%;
   height: 58px;
-  margin: 15px 10px;
+  margin: 10px 10px;
 
   div {
     width: 55%;
@@ -77,23 +76,19 @@ export const Cart = styled(Link)`
   align-items: center;
   text-decoration: none;
   transition: opacity 0.2s;
-  padding: 0.5%;
-  border-radius: 4px;
-  width: 200px;
 
   &:hover {
     opacity: 0.7;
   }
 
   div {
-    width: 50%;
-    margin: 0 auto;
     text-align: right;
+    width: 50%;
+    margin-right: 10px;
 
     strong {
-      display: flex;
+      display: block;
       color: #333;
-      font-size: bold;
     }
 
     span {
@@ -101,19 +96,5 @@ export const Cart = styled(Link)`
       color: #333;
       font-size: bold;
     }
-  }
-`;
-
-export const Links = styled.div`
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  transition: opacity 0.2s;
-  padding: 0.5%;
-  border-radius: 4px;
-
-  strong {
-    margin-right: 5px;
-    text-decoration: none;
   }
 `;

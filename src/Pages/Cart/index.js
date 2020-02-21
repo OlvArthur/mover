@@ -161,9 +161,7 @@ function Cart({ products, removeFromCart, updateAmount }) {
 }
 
 Cart.propTypes = {
-  products: PropType.shape({
-    map: PropType.func,
-  }).isRequired,
+  products: PropType.oneOfType([PropType.array]).isRequired,
   removeFromCart: PropType.func.isRequired,
   updateAmount: PropType.func.isRequired,
 };
