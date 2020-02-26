@@ -1,22 +1,32 @@
 import produce from 'immer';
 
-export default function cart(state = [], action) {
+const INITIAL_STATE = {
+  JProducts: [],
+  LPProducts: [],
+};
+
+export default function cart(state = INITIAL_STATE, action) {
   switch (action.type) {
     case '@cart/ADD':
       return produce(state, draft => {
-        const productIndex = draft.findIndex(p => p.id === action.product.id);
+        const [JIndex, LPIndex] = [
+          draft.JProducts.findIndex(p => p.id === action.product.id),
+          draft.LPProducts.findIndex(p => p.id === action.product.id),
+        ];
 
-        if (productIndex >= 0) {
-          draft[productIndex].amount += 1;
+        if (JIndex >= 0) {
+          draft.JProducts[JIndex].amount += 1;
+        } else if (LPIndex >= 0) {
+          draft.LPProducts[LPIndex].amount += 1;
         } else if (action.product.Jurunense > action.product.LP) {
-          draft.push({
+          draft.LPProducts.push({
             ...action.product,
             amount: 1,
             image: action.image,
             price: action.product.LP,
           });
         } else {
-          draft.push({
+          draft.JProducts.push({
             ...action.product,
             amount: 1,
             image: action.image,
@@ -27,10 +37,15 @@ export default function cart(state = [], action) {
 
     case '@cart/REMOVE':
       return produce(state, draft => {
-        const productIndex = draft.findIndex(p => p.id === action.id);
+        const [JIndex, LPIndex] = [
+          draft.JProducts.findIndex(p => p.id === action.id),
+          draft.LPProducts.findIndex(p => p.id === action.id),
+        ];
 
-        if (productIndex >= 0) {
-          draft.splice(productIndex, 1);
+        if (JIndex >= 0) {
+          draft.JProducts.splice(JIndex, 1);
+        } else if (LPIndex >= 0) {
+          draft.LPProducts.splice(LPIndex, 1);
         }
       });
 
@@ -40,10 +55,15 @@ export default function cart(state = [], action) {
       }
 
       return produce(state, draft => {
-        const productIndex = draft.findIndex(p => p.id === action.id);
+        const [JIndex, LPIndex] = [
+          draft.JProducts.findIndex(p => p.id === action.id),
+          draft.LPProducts.findIndex(p => p.id === action.id),
+        ];
 
-        if (productIndex >= 0) {
-          draft[productIndex].amount = Number(action.amount);
+        if (JIndex >= 0) {
+          draft.JProducts[JIndex].amount = Number(action.amount);
+        } else if (LPIndex >= 0) {
+          draft.LPProducts[LPIndex].amount = Number(action.amount);
         }
       });
     }

@@ -14,7 +14,7 @@ import { formatPrice } from '../../utils/format';
 
 import { Container, ProductTable, Total, Store } from './styles';
 
-function Cart({ products, removeFromCart, updateAmount }) {
+function Cart({ stores, removeFromCart, updateAmount }) {
   function increment(product) {
     updateAmount(product.id, product.amount + 1);
   }
@@ -29,22 +29,25 @@ function Cart({ products, removeFromCart, updateAmount }) {
 
   return (
     <Container>
-      <Store>
-        <h1>Jurunense</h1>
-        <ProductTable>
-          <thead>
-            <tr>
-              <th />
-              <th>PRODUTO</th>
-              <th>QTD</th>
-              <th>SUBTOTAL</th>
-              <th />
-            </tr>
-          </thead>
-          {products.map(product => (
-            <tbody key={product.id}>
-              {product.Jurunense < product.LP && (
+      {stores.map(store => (
+        <Store>
+          <h1>{store.name}</h1>
+          <ProductTable>
+            <thead>
+              <tr>
+                <th />
+                <th>DISPONIBILIDADE</th>
+                <th>PRODUTO</th>
+                <th>QTD</th>
+                <th>UNID</th>
+                <th>SUBTOTAL</th>
+                <th />
+              </tr>
+            </thead>
+            {store.products.map(product => (
+              <tbody key={product.id}>
                 <tr>
+                  <td />
                   <td />
                   <td>
                     <strong>{product.description}</strong>
@@ -68,68 +71,7 @@ function Cart({ products, removeFromCart, updateAmount }) {
                     </div>
                   </td>
                   <td>
-                    <strong>{product.subtotal}</strong>
-                  </td>
-                  <td>
-                    <button
-                      type="button"
-                      onClick={() => removeFromCart(product.id)}
-                    >
-                      <MdDelete size={20} color="#7159c1" />
-                    </button>
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          ))}
-        </ProductTable>
-        <footer>
-          <button type="button">VERIFICAR DISPONIBILIDADE</button>
-
-          <Total>
-            <span>TOTAL</span>
-            <strong>R$860,00</strong>
-          </Total>
-        </footer>
-      </Store>
-
-      <Store>
-        <h1>Lojão do Pedreiro</h1>
-        <ProductTable>
-          <thead>
-            <tr>
-              <th />
-              <th>PRODUTO</th>
-              <th>QTD</th>
-              <th>SUBTOTAL</th>
-              <th />
-            </tr>
-          </thead>
-          {products.map(product => (
-            <tbody key={product.id}>
-              {product.Jurunense > product.LP && (
-                <tr>
-                  <td />
-                  <td>
-                    <strong>{product.description}</strong>
-                    <span>{formatPrice(product.price)}</span>
-                  </td>
-                  <td>
-                    <div>
-                      <button type="button" onClick={() => decrement(product)}>
-                        <MdRemoveCircleOutline size={20} color="#7159c1" />
-                      </button>
-                      <input
-                        type="number"
-                        onChange={e =>
-                          updateManually(product.id, Number(e.target.value))
-                        }
-                        value={product.amount}
-                      />
-                      <button type="button" onClick={() => increment(product)}>
-                        <MdAddCircleOutline size={20} color="#7159c1" />
-                      </button>
-                    </div>
+                    <strong>{product.measure}</strong>
                   </td>
                   <td>
                     <strong>{product.subtotal}</strong>
@@ -143,34 +85,60 @@ function Cart({ products, removeFromCart, updateAmount }) {
                     </button>
                   </td>
                 </tr>
-              )}
-            </tbody>
-          ))}
-        </ProductTable>
-        <footer>
-          <button type="button">VERIFICAR DISPONIBILIDADE</button>
+              </tbody>
+            ))}
+          </ProductTable>
+          <footer>
+            <button type="button">VERIFICAR DISPONIBILIDADE</button>
 
-          <Total>
-            <span>TOTAL</span>
-            <strong>R$580,00</strong>
-          </Total>
-        </footer>
-      </Store>
+            <Total>
+              <span>TOTAL</span>
+              <strong>{formatPrice(store.total)}</strong>
+            </Total>
+          </footer>
+        </Store>
+      ))}
     </Container>
   );
 }
 
 Cart.propTypes = {
-  products: PropType.oneOfType([PropType.array]).isRequired,
+  stores: PropType.oneOfType([PropType.array]).isRequired,
   removeFromCart: PropType.func.isRequired,
   updateAmount: PropType.func.isRequired,
 };
 
 const mapStateToProps = state => ({
-  products: state.cart.map(product => ({
+  stores: [
+    {
+      name: 'Jurunense',
+      products: state.cart.JProducts.map(product => ({
+        ...product,
+        subtotal: formatPrice(product.price * product.amount),
+      })),
+      total: state.cart.JProducts.reduce((total, product) => {
+        return total + product.price * product.amount;
+      }, 0),
+    },
+    {
+      name: 'Lojão do Pedreiro',
+      products: state.cart.LPProducts.map(product => ({
+        ...product,
+        subtotal: formatPrice(product.price * product.amount),
+      })),
+      total: state.cart.LPProducts.reduce((total, product) => {
+        return total + product.price * product.amount;
+      }, 0),
+    },
+  ],
+
+  /* state.cart.map(product => ({
     ...product,
     subtotal: formatPrice(product.price * product.amount),
   })),
+  /* Jtotal: state.cart.reduce((total, product) => {
+    return total + product.price * product.amount;
+  }), */
 });
 
 const mapDispatchToProps = dispatch =>

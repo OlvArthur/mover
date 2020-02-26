@@ -16,14 +16,6 @@ const INITIAL_STATE = {
       name: 'Ferramentas',
       objetos: ['Ferramentas manuais', 'Aço', 'Cal'],
     },
-    {
-      name: 'Materias de construção',
-      objetos: ['Cimento', 'Aço', 'Cal'],
-    },
-    {
-      name: 'Materias de construção',
-      objetos: ['Cimento', 'Aço', 'Cal'],
-    },
   ],
 };
 
