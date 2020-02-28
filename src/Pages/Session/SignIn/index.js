@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import { signInRequest } from '../../../store/modules/auth/actions';
 
 import { Container, StyledForm } from './styles';
-import logo from '../../../assets/images/logo.png';
+import logo from '../../../assets/images/Logo.svg';
 
 const schema = Yup.object().shape({
   email: Yup.string()
@@ -30,7 +30,7 @@ function SignIn() {
   return (
     <Container>
       <StyledForm schema={schema} onSubmit={handleSubmit}>
-        <img src={logo} alt="Intregra" />
+        <img src={logo} alt="Inobras" />
 
         <Input
           name="email"

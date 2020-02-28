@@ -3,9 +3,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import px2vw from '../utils/px2vw';
 
-// import background from '../assets/images/background.jpg';
-import background from '../assets/images/b6.jpg';
-
 export default createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
@@ -35,7 +32,6 @@ export default createGlobalStyle`
 
 body {
     background: linear-gradient(-90deg, #0F2027,#203A43,#2C5364 );
-  /* background: url(${background}) no-repeat center fixed ; */
     background-size: 100% 100%;
   /* Para melhor definição das letras na página*/
   -webkit-font-smoothing: antialiased !important;

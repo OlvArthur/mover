@@ -8,8 +8,9 @@ export const Container = styled.header`
   background: #fff;
 
   img {
-    width: 180px;
-    height: 45px;
+    width: 100px;
+    height: 79px;
+    margin: 10px 20px 0;
   }
 `;
 

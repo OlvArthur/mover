@@ -56,7 +56,7 @@ class ProductForm extends Component {
               onClick={() => this.handleAddProduct(product)}
             >
               <div>
-                <MdAddShoppingCart size={20} color="#FFF" /> 3
+                <MdAddShoppingCart size={20} color="#FFF" />
               </div>
 
               <span>ADICIONAR AO CARRINHO</span>

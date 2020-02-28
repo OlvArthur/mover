@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { MdShoppingBasket, MdSearch } from 'react-icons/md';
 import { Input, Form } from '@rocketseat/unform';
 
-import logo from '../../assets/images/logo.png';
+import logo from '../../assets/images/Logo.svg';
 import { SearchRequest } from '../../store/modules/search/actions';
 import { Container, Cart, Box } from './styles';
 
