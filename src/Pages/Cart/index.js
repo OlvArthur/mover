@@ -12,9 +12,11 @@ import PropType from 'prop-types';
 import * as CartActions from '../../store/modules/cart/actions';
 import { formatPrice } from '../../utils/format';
 
+// import { checkStock } from '../../store/modules/cart/sagas';
+
 import { Container, ProductTable, Total, Store } from './styles';
 
-function Cart({ stores, removeFromCart, updateAmount }) {
+function Cart({ stores, removeFromCart, updateAmount, checkStock }) {
   function increment(product) {
     updateAmount(product.id, product.amount + 1);
   }
@@ -25,6 +27,10 @@ function Cart({ stores, removeFromCart, updateAmount }) {
 
   function updateManually(id, amount) {
     updateAmount(id, amount);
+  }
+
+  function isAvailable(products) {
+    checkStock(products);
   }
 
   return (
@@ -89,7 +95,12 @@ function Cart({ stores, removeFromCart, updateAmount }) {
             ))}
           </ProductTable>
           <footer>
-            <button type="button">VERIFICAR DISPONIBILIDADE</button>
+            <button
+              type="button"
+              onCLick={() => removeFromCart(store.products[3].id)}
+            >
+              VERIFICAR DISPONIBILIDADE
+            </button>
 
             <Total>
               <span>TOTAL</span>

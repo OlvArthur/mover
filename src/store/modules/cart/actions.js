@@ -20,3 +20,10 @@ export function updateAmount(id, amount) {
     amount,
   };
 }
+
+export function checkStock(products) {
+  return {
+    type: '@cart/CHECK_STOCK',
+    payload: { products },
+  };
+}
