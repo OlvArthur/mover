@@ -12,8 +12,6 @@ import PropType from 'prop-types';
 import * as CartActions from '../../store/modules/cart/actions';
 import { formatPrice } from '../../utils/format';
 
-// import { checkStock } from '../../store/modules/cart/sagas';
-
 import { Container, ProductTable, Total, Store } from './styles';
 
 function Cart({ stores, removeFromCart, updateAmount, checkStock }) {
@@ -36,7 +34,7 @@ function Cart({ stores, removeFromCart, updateAmount, checkStock }) {
   return (
     <Container>
       {stores.map(store => (
-        <Store>
+        <Store key={store.name}>
           <h1>{store.name}</h1>
           <ProductTable>
             <thead>
@@ -95,11 +93,8 @@ function Cart({ stores, removeFromCart, updateAmount, checkStock }) {
             ))}
           </ProductTable>
           <footer>
-            <button
-              type="button"
-              onCLick={() => removeFromCart(store.products[3].id)}
-            >
-              VERIFICAR DISPONIBILIDADE
+            <button type="button" onClick={() => isAvailable(store.products)}>
+              <span>VERIFICAR DISPONIBILIDADE</span>
             </button>
 
             <Total>
@@ -117,6 +112,7 @@ Cart.propTypes = {
   stores: PropType.oneOfType([PropType.array]).isRequired,
   removeFromCart: PropType.func.isRequired,
   updateAmount: PropType.func.isRequired,
+  checkStock: PropType.func.isRequired,
 };
 
 const mapStateToProps = state => ({

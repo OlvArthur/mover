@@ -6,7 +6,7 @@ export function* checkStock() {
     companyName: 'Inobras',
   });
 
-  console.tron.warn(response.data);
+  console.tron.log(response.data);
 }
 
-export default all([takeLatest('@cart/CHECKSTOCK', checkStock)]);
+export default all([takeLatest('@cart/CHECK_STOCK', checkStock)]);
