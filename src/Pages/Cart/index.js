@@ -14,7 +14,7 @@ import { formatPrice } from '../../utils/format';
 
 import { Container, ProductTable, Total, Store } from './styles';
 
-function Cart({ stores, removeFromCart, updateAmount, checkStock }) {
+function Cart({ stores, removeFromCart, updateAmount, checkStockRequest }) {
   function increment(product) {
     updateAmount(product.id, product.amount + 1);
   }
@@ -28,7 +28,7 @@ function Cart({ stores, removeFromCart, updateAmount, checkStock }) {
   }
 
   function isAvailable(products) {
-    checkStock(products);
+    checkStockRequest(products);
   }
 
   return (
@@ -112,7 +112,7 @@ Cart.propTypes = {
   stores: PropType.oneOfType([PropType.array]).isRequired,
   removeFromCart: PropType.func.isRequired,
   updateAmount: PropType.func.isRequired,
-  checkStock: PropType.func.isRequired,
+  checkStockRequest: PropType.func.isRequired,
 };
 
 const mapStateToProps = state => ({

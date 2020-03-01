@@ -49,7 +49,7 @@ export default function cart(state = INITIAL_STATE, action) {
         }
       });
 
-    case '@cart/UPDATE_AMOUNT': {
+    case '@cart/UPDATE_AMOUNT':
       if (action.amount <= 0) {
         return state;
       }
@@ -66,12 +66,10 @@ export default function cart(state = INITIAL_STATE, action) {
           draft.LPProducts[LPIndex].amount = Number(action.amount);
         }
       });
-    }
 
-    case '@cart/CHECK_STOCK': {
+    case '@cart/CHECK_STOCK_SUCESS':
       console.tron.log(action.payload.products);
       return state;
-    }
 
     default:
       return state;

@@ -21,9 +21,16 @@ export function updateAmount(id, amount) {
   };
 }
 
-export function checkStock(products) {
+export function checkStockRequest(products) {
   return {
-    type: '@cart/CHECK_STOCK',
+    type: '@cart/CHECK_STOCK_REQUEST',
+    payload: { products },
+  };
+}
+
+export function checkStockSucess(products) {
+  return {
+    type: '@cart/CHECK_STOCK_SUCESS',
     payload: { products },
   };
 }
