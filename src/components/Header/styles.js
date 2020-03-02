@@ -7,6 +7,11 @@ export const Container = styled.header`
   align-items: center;
   background: #fff;
 
+  > div {
+    display: flex;
+    align-items: center;
+  }
+
   img {
     width: 100px;
     height: 79px;
@@ -97,5 +102,26 @@ export const Cart = styled(Link)`
       color: #333;
       font-size: bold;
     }
+  }
+
+  svg {
+    width: 70px;
+    margin-right: 20px;
+    border-right: 1px solid #333;
+    padding-right: 10px;
+  }
+`;
+
+export const Profile = styled.div`
+  margin-right: 20px;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  a {
+    text-decoration: none;
+    color: #333;
   }
 `;

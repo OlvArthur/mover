@@ -6,7 +6,7 @@ import { Input, Form } from '@rocketseat/unform';
 
 import logo from '../../assets/images/Logo.svg';
 import { SearchRequest } from '../../store/modules/search/actions';
-import { Container, Cart, Box } from './styles';
+import { Container, Cart, Box, Profile } from './styles';
 
 export default function Header() {
   const cartSize =
@@ -36,13 +36,20 @@ export default function Header() {
         </div>
       </Box>
 
-      <Cart to="/cart">
-        <div>
-          <strong>Meu Carrinho</strong>
-          <span>{cartSize} itens</span>
-        </div>
-        <MdShoppingBasket size={36} color="#333" />
-      </Cart>
+      <div>
+        <Cart to="/cart">
+          <div>
+            <strong>Meu Carrinho</strong>
+            <span>{cartSize} itens</span>
+          </div>
+          <MdShoppingBasket size={36} color="#333" />
+        </Cart>
+        <Profile>
+          <Link to="/profile">
+            <strong>Perfil</strong>
+          </Link>
+        </Profile>
+      </div>
     </Container>
   );
 }
