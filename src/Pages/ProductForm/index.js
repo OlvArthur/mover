@@ -23,8 +23,9 @@ class ProductForm extends Component {
 
     const data = products.data.map(product => ({
       ...product,
-      priceLP: formatPrice(product.LP),
-      priceJurunense: formatPrice(product.Jurunense),
+      priceLP: formatPrice(product.lp),
+      priceJurunense: formatPrice(product.jurunense),
+      priceBeltubos: formatPrice(product.beltubos),
     }));
 
     this.setState({
@@ -32,10 +33,10 @@ class ProductForm extends Component {
     });
   }
 
-  handleAddProduct = (product, image) => {
+  handleAddProduct = product => {
     const { addToCart } = this.props;
 
-    addToCart(product, image);
+    addToCart(product);
   };
 
   render() {
@@ -50,6 +51,7 @@ class ProductForm extends Component {
             </strong>
             <span>Jurunense: {product.priceJurunense}</span>
             <span>Lojão do Pedreiro: {product.priceLP}</span>
+            <span>Beltubos: {product.priceBeltubos}</span>
 
             <button
               type="button"

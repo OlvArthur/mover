@@ -137,6 +137,16 @@ const mapStateToProps = state => ({
         return total + product.price * product.amount;
       }, 0),
     },
+    {
+      name: 'BelTubos',
+      products: state.cart.BTProducts.map(product => ({
+        ...product,
+        subtotal: formatPrice(product.price * product.amount),
+      })),
+      total: state.cart.BTProducts.reduce((total, product) => {
+        return total + product.price * product.amount;
+      }, 0),
+    },
   ],
 
   /* state.cart.map(product => ({
