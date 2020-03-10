@@ -1,39 +1,90 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   MdRemoveCircleOutline,
   MdAddCircleOutline,
   MdDelete,
 } from 'react-icons/md';
-import PropType from 'prop-types';
 
-import * as CartActions from '../../store/modules/cart/actions';
+import {
+  updateAmount,
+  removeFromCart,
+  checkStockRequest,
+} from '../../store/modules/cart/actions';
 import { formatPrice } from '../../utils/format';
 
 import { Container, ProductTable, Total, Store } from './styles';
 
-function Cart({ stores, removeFromCart, updateAmount, checkStockRequest }) {
+export default function Cart() {
+  const dispatch = useDispatch();
+  const cartState = useSelector(state => ({
+    stores: [
+      {
+        name: 'Jurunense',
+        products: state.cart.JProducts.map(product => ({
+          id: product.id,
+          amount: product.amount,
+          description: product.description,
+          price: formatPrice(product.price),
+          measure: product.measure,
+          subtotal: formatPrice(product.price * product.amount),
+        })),
+        total: state.cart.JProducts.reduce((total, product) => {
+          return total + product.price * product.amount;
+        }, 0),
+      },
+      {
+        name: 'Lojão do Pedreiro',
+        products: state.cart.LPProducts.map(product => ({
+          id: product.id,
+          amount: product.amount,
+          description: product.description,
+          price: formatPrice(product.price),
+          measure: product.measure,
+          subtotal: formatPrice(product.price * product.amount),
+        })),
+        total: state.cart.LPProducts.reduce((total, product) => {
+          return total + product.price * product.amount;
+        }, 0),
+      },
+      {
+        name: 'BelTubos',
+        products: state.cart.BTProducts.map(product => ({
+          id: product.id,
+          amount: product.amount,
+          description: product.description,
+          price: formatPrice(product.price),
+          measure: product.measure,
+          subtotal: formatPrice(product.price * product.amount),
+        })),
+        total: state.cart.BTProducts.reduce((total, product) => {
+          return total + product.price * product.amount;
+        }, 0),
+      },
+    ],
+  }));
+
   function increment(product) {
-    updateAmount(product.id, product.amount + 1);
+    dispatch(updateAmount(product.id, product.amount + 1));
   }
 
   function decrement(product) {
-    updateAmount(product.id, product.amount - 1);
+    dispatch(updateAmount(product.id, product.amount - 1));
   }
 
   function updateManually(id, amount) {
-    updateAmount(id, amount);
+    dispatch(updateAmount(id, amount));
   }
 
   function isAvailable(products) {
-    checkStockRequest(products);
+    console.tron.log('aqui', products);
+    dispatch(checkStockRequest(products));
   }
 
   return (
     <Container>
-      {stores.map(store => (
+      {cartState.stores.map(store => (
         <Store key={store.name}>
           <h1>{store.name}</h1>
           <ProductTable>
@@ -55,7 +106,7 @@ function Cart({ stores, removeFromCart, updateAmount, checkStockRequest }) {
                   <td />
                   <td>
                     <strong>{product.description}</strong>
-                    <span>{formatPrice(product.price)}</span>
+                    <span>{product.price}</span>
                   </td>
                   <td>
                     <div>
@@ -107,58 +158,3 @@ function Cart({ stores, removeFromCart, updateAmount, checkStockRequest }) {
     </Container>
   );
 }
-
-Cart.propTypes = {
-  stores: PropType.oneOfType([PropType.array]).isRequired,
-  removeFromCart: PropType.func.isRequired,
-  updateAmount: PropType.func.isRequired,
-  checkStockRequest: PropType.func.isRequired,
-};
-
-const mapStateToProps = state => ({
-  stores: [
-    {
-      name: 'Jurunense',
-      products: state.cart.JProducts.map(product => ({
-        ...product,
-        subtotal: formatPrice(product.price * product.amount),
-      })),
-      total: state.cart.JProducts.reduce((total, product) => {
-        return total + product.price * product.amount;
-      }, 0),
-    },
-    {
-      name: 'Lojão do Pedreiro',
-      products: state.cart.LPProducts.map(product => ({
-        ...product,
-        subtotal: formatPrice(product.price * product.amount),
-      })),
-      total: state.cart.LPProducts.reduce((total, product) => {
-        return total + product.price * product.amount;
-      }, 0),
-    },
-    {
-      name: 'BelTubos',
-      products: state.cart.BTProducts.map(product => ({
-        ...product,
-        subtotal: formatPrice(product.price * product.amount),
-      })),
-      total: state.cart.BTProducts.reduce((total, product) => {
-        return total + product.price * product.amount;
-      }, 0),
-    },
-  ],
-
-  /* state.cart.map(product => ({
-    ...product,
-    subtotal: formatPrice(product.price * product.amount),
-  })),
-  /* Jtotal: state.cart.reduce((total, product) => {
-    return total + product.price * product.amount;
-  }), */
-});
-
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(CartActions, dispatch);
-
-export default connect(mapStateToProps, mapDispatchToProps)(Cart);

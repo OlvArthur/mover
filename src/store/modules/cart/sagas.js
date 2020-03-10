@@ -3,12 +3,14 @@ import api from '../../../services/api';
 
 import { checkStockSucess } from './actions';
 
-export function* CheckStockRequest() {
+export function* CheckStockRequest({ payload }) {
   const response = yield call(api.post, 'checkouts', {
-    companyName: 'Inobras',
+    products: payload.products,
   });
 
   yield put(checkStockSucess(response.data));
 }
 
-export default all([takeLatest('@cart/CHECK_STOCK', CheckStockRequest)]);
+export default all([
+  takeLatest('@cart/CHECK_STOCK_REQUEST', CheckStockRequest),
+]);
