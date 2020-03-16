@@ -28,6 +28,7 @@ class ProductForm extends Component {
       priceBeltubos: formatPrice(product.beltubos),
     }));
 
+    console.tron.log(data[0]);
     this.setState({
       products: data,
     });
@@ -45,25 +46,30 @@ class ProductForm extends Component {
     return (
       <ProductList>
         {products.map(product => (
-          <li key={product.id}>
-            <strong>
-              {product.description.toUpperCase()} {product.brand.toUpperCase()}
-            </strong>
-            <span>Jurunense: {product.priceJurunense}</span>
-            <span>Lojão do Pedreiro: {product.priceLP}</span>
-            <span>Beltubos: {product.priceBeltubos}</span>
+          <ul>
+            {product.stores.map(store => (
+              <li key={product.id}>
+                <strong>
+                  {product.description.toUpperCase()}{' '}
+                  {product.brand.toUpperCase()}
+                </strong>
+                <span>
+                  {store.name}: {product.priceJurunense}
+                </span>
 
-            <button
-              type="button"
-              onClick={() => this.handleAddProduct(product)}
-            >
-              <div>
-                <MdAddShoppingCart size={20} color="#FFF" />
-              </div>
+                <button
+                  type="button"
+                  onClick={() => this.handleAddProduct(product)}
+                >
+                  <div>
+                    <MdAddShoppingCart size={20} color="#FFF" />
+                  </div>
 
-              <span>ADICIONAR AO CARRINHO</span>
-            </button>
-          </li>
+                  <span>ADICIONAR AO CARRINHO</span>
+                </button>
+              </li>
+            ))}
+          </ul>
         ))}
       </ProductList>
     );

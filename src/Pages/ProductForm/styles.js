@@ -15,6 +15,7 @@ export const ProductList = styled.ul`
     flex-direction: column;
     background: #fff;
     padding: 20px;
+    margin-top: 10px;
 
     img {
       align-self: center;
