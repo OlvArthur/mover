@@ -28,16 +28,15 @@ class ProductForm extends Component {
       priceBeltubos: formatPrice(product.beltubos),
     }));
 
-    console.tron.log(data[0]);
     this.setState({
       products: data,
     });
   }
 
-  handleAddProduct = product => {
+  handleAddProduct = (product, store) => {
     const { addToCart } = this.props;
-
-    addToCart(product);
+    console.tron.log(store);
+    addToCart(product, store);
   };
 
   render() {
@@ -46,20 +45,20 @@ class ProductForm extends Component {
     return (
       <ProductList>
         {products.map(product => (
-          <ul>
+          <ul key={product.id}>
             {product.stores.map(store => (
-              <li key={product.id}>
+              <li key={store.id}>
                 <strong>
                   {product.description.toUpperCase()}{' '}
                   {product.brand.toUpperCase()}
                 </strong>
                 <span>
-                  {store.name}: {product.priceJurunense}
+                  {store.name}: {formatPrice(store.pivot.price)}
                 </span>
 
                 <button
                   type="button"
-                  onClick={() => this.handleAddProduct(product)}
+                  onClick={() => this.handleAddProduct(product, store)}
                 >
                   <div>
                     <MdAddShoppingCart size={20} color="#FFF" />

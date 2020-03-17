@@ -78,8 +78,11 @@ export default function Cart() {
   }
 
   function isAvailable(products) {
-    console.tron.log('aqui', products);
     dispatch(checkStockRequest(products));
+  }
+
+  function remove(id) {
+    dispatch(removeFromCart(id));
   }
 
   return (
@@ -132,10 +135,7 @@ export default function Cart() {
                     <strong>{product.subtotal}</strong>
                   </td>
                   <td>
-                    <button
-                      type="button"
-                      onClick={() => removeFromCart(product.id)}
-                    >
+                    <button type="button" onClick={() => remove(product.id)}>
                       <MdDelete size={20} color="#7159c1" />
                     </button>
                   </td>
