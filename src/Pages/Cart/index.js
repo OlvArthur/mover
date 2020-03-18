@@ -18,7 +18,7 @@ import { Container, ProductTable, Total, Store } from './styles';
 
 export default function Cart() {
   const dispatch = useDispatch();
-  const cartState = useSelector(state => ({
+  /* const cartState = useSelector(state => ({
     stores: [
       {
         name: 'Jurunense',
@@ -63,32 +63,46 @@ export default function Cart() {
         }, 0),
       },
     ],
+  })); */
+  const cartState = useSelector(state => ({
+    stores: state.cart.stores.map(store => ({
+      ...store,
+      products: store.products.map(product => ({
+        ...product,
+        price: formatPrice(product.price),
+        subtotal: formatPrice(product.price * product.amount),
+      })),
+
+      total: store.products.reduce((total, product) => {
+        return total + product.price * product.amount;
+      }, 0),
+    })),
   }));
 
-  function increment(product) {
-    dispatch(updateAmount(product.id, product.amount + 1));
+  function increment(product, store) {
+    dispatch(updateAmount(store.id, product.id, product.amount + 1));
   }
 
-  function decrement(product) {
-    dispatch(updateAmount(product.id, product.amount - 1));
+  function decrement(product, store) {
+    dispatch(updateAmount(store.id, product.id, product.amount - 1));
   }
 
-  function updateManually(id, amount) {
-    dispatch(updateAmount(id, amount));
+  function updateManually(storeId, productId, amount) {
+    dispatch(updateAmount(storeId, productId, amount));
   }
 
   function isAvailable(products) {
     dispatch(checkStockRequest(products));
   }
 
-  function remove(id) {
-    dispatch(removeFromCart(id));
+  function remove(productId, storeId) {
+    dispatch(removeFromCart(productId, storeId));
   }
 
   return (
     <Container>
       {cartState.stores.map(store => (
-        <Store key={store.name}>
+        <Store key={store.id}>
           <h1>{store.name}</h1>
           <ProductTable>
             <thead>
@@ -113,17 +127,27 @@ export default function Cart() {
                   </td>
                   <td>
                     <div>
-                      <button type="button" onClick={() => decrement(product)}>
+                      <button
+                        type="button"
+                        onClick={() => decrement(product, store)}
+                      >
                         <MdRemoveCircleOutline size={20} color="#7159c1" />
                       </button>
                       <input
                         type="number"
                         onChange={e =>
-                          updateManually(product.id, Number(e.target.value))
+                          updateManually(
+                            store.id,
+                            product.id,
+                            Number(e.target.value)
+                          )
                         }
                         value={product.amount}
                       />
-                      <button type="button" onClick={() => increment(product)}>
+                      <button
+                        type="button"
+                        onClick={() => increment(product, store)}
+                      >
                         <MdAddCircleOutline size={20} color="#7159c1" />
                       </button>
                     </div>
@@ -135,7 +159,10 @@ export default function Cart() {
                     <strong>{product.subtotal}</strong>
                   </td>
                   <td>
-                    <button type="button" onClick={() => remove(product.id)}>
+                    <button
+                      type="button"
+                      onClick={() => remove(product.id, store.id)}
+                    >
                       <MdDelete size={20} color="#7159c1" />
                     </button>
                   </td>

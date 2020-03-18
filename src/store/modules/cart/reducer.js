@@ -2,10 +2,7 @@ import produce from 'immer';
 
 const INITIAL_STATE = {
   stores: [],
-
-  JProducts: [],
-  LPProducts: [],
-  BTProducts: [],
+  productsAmount: 0,
 };
 
 export default function cart(state = INITIAL_STATE, action) {
@@ -30,7 +27,9 @@ export default function cart(state = INITIAL_STATE, action) {
               brand: action.payload.product.brand,
               price: action.payload.store.pivot.price,
               amount: 1,
+              measure: action.payload.product.measure,
             });
+            draft.productsAmount += 1;
           }
         } else {
           draft.stores.push({
@@ -43,62 +42,30 @@ export default function cart(state = INITIAL_STATE, action) {
                 brand: action.payload.product.brand,
                 price: action.payload.store.pivot.price,
                 amount: 1,
+                measure: action.payload.product.measure,
               },
             ],
           });
-        }
-        const [JIndex, LPIndex, BTIndex] = [
-          draft.JProducts.findIndex(p => p.id === action.payload.product.id),
-          draft.LPProducts.findIndex(p => p.id === action.payload.product.id),
-          draft.BTProducts.findIndex(p => p.id === action.payload.product.id),
-        ];
-
-        if (JIndex >= 0) {
-          draft.JProducts[JIndex].amount += 1;
-        } else if (LPIndex >= 0) {
-          draft.LPProducts[LPIndex].amount += 1;
-        } else if (BTIndex >= 0) {
-          draft.BTProducts[BTIndex].amount += 1;
-        } else if (
-          action.payload.product.jurunense > action.payload.product.lp &&
-          action.payload.product.beltubos > action.payload.product.lp
-        ) {
-          draft.LPProducts.push({
-            ...action.payload.product,
-            amount: 1,
-            price: action.payload.product.lp,
-          });
-        } else if (
-          action.payload.product.jurunense > action.payload.product.beltubos
-        ) {
-          draft.BTProducts.push({
-            ...action.payload.product,
-            amount: 1,
-            price: action.payload.product.beltubos,
-          });
-        } else {
-          draft.JProducts.push({
-            ...action.payload.product,
-            amount: 1,
-            price: action.payload.product.jurunense,
-          });
+          draft.productsAmount += 1;
         }
       });
 
     case '@cart/REMOVE':
       return produce(state, draft => {
-        const [JIndex, LPIndex, BTIndex] = [
-          draft.JProducts.findIndex(p => p.id === action.payload.id),
-          draft.LPProducts.findIndex(p => p.id === action.payload.id),
-          draft.BTProducts.findIndex(p => p.id === action.payload.id),
-        ];
+        const storeIndex = draft.stores.findIndex(
+          p => p.id === action.payload.storeId
+        );
+        const productIndex = draft.stores[storeIndex].products.findIndex(
+          p => p.id === action.payload.productId
+        );
 
-        if (JIndex >= 0) {
-          draft.JProducts.splice(JIndex, 1);
-        } else if (LPIndex >= 0) {
-          draft.LPProducts.splice(LPIndex, 1);
-        } else if (BTIndex >= 0) {
-          draft.BTProducts.splice(BTIndex, 1);
+        draft.stores[storeIndex].products.splice(productIndex, 1);
+        draft.productsAmount -= 1;
+
+        const storeProducts = draft.stores[storeIndex].products.length;
+
+        if (storeProducts === 0) {
+          draft.stores.splice(storeIndex, 1);
         }
       });
 
@@ -108,18 +75,17 @@ export default function cart(state = INITIAL_STATE, action) {
       }
 
       return produce(state, draft => {
-        const [JIndex, LPIndex, BTIndex] = [
-          draft.JProducts.findIndex(p => p.id === action.payload.id),
-          draft.LPProducts.findIndex(p => p.id === action.payload.id),
-          draft.BTProducts.findIndex(p => p.id === action.payload.id),
-        ];
+        const storeIndex = draft.stores.findIndex(
+          p => p.id === action.payload.storeId
+        );
+        const productIndex = draft.stores[storeIndex].products.findIndex(
+          p => p.id === action.payload.productId
+        );
 
-        if (JIndex >= 0) {
-          draft.JProducts[JIndex].amount = Number(action.payload.amount);
-        } else if (LPIndex >= 0) {
-          draft.LPProducts[LPIndex].amount = Number(action.payload.amount);
-        } else if (BTIndex >= 0) {
-          draft.BTProducts[BTIndex].amount = Number(action.payload.amount);
+        if (productIndex >= 0) {
+          draft.stores[storeIndex].products[productIndex].amount = Number(
+            action.payload.amount
+          );
         }
       });
 

@@ -9,10 +9,7 @@ import { SearchRequest } from '../../store/modules/search/actions';
 import { Container, Cart, Box, Profile } from './styles';
 
 export default function Header() {
-  const cartSize =
-    useSelector(state => state.cart.JProducts.length) +
-    useSelector(state => state.cart.BTProducts.length) +
-    useSelector(state => state.cart.LPProducts.length);
+  const cartSize = useSelector(state => state.cart.productsAmount);
   const dispatch = useDispatch();
 
   async function apiRequest({ query }) {

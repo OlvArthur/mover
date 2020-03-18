@@ -5,17 +5,17 @@ export function addToCart(product, store) {
   };
 }
 
-export function removeFromCart(id) {
+export function removeFromCart(productId, storeId) {
   return {
     type: '@cart/REMOVE',
-    payload: { id },
+    payload: { productId, storeId },
   };
 }
 
-export function updateAmount(id, amount) {
+export function updateAmount(storeId, productId, amount) {
   return {
     type: '@cart/UPDATE_AMOUNT',
-    payload: { id, amount },
+    payload: { storeId, productId, amount },
   };
 }
 

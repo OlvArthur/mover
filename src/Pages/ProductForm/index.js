@@ -19,23 +19,23 @@ class ProductForm extends Component {
   };
 
   async componentDidMount() {
-    const products = await api.get('/products');
+    const { data } = await api.get('/products');
 
-    const data = products.data.map(product => ({
+    const products = data.map(product => ({
       ...product,
-      priceLP: formatPrice(product.lp),
-      priceJurunense: formatPrice(product.jurunense),
-      priceBeltubos: formatPrice(product.beltubos),
+      stores: product.stores.map(store => ({
+        ...store,
+        price: formatPrice(store.pivot.price),
+      })),
     }));
 
     this.setState({
-      products: data,
+      products,
     });
   }
 
   handleAddProduct = (product, store) => {
     const { addToCart } = this.props;
-    console.tron.log(store);
     addToCart(product, store);
   };
 
@@ -53,7 +53,7 @@ class ProductForm extends Component {
                   {product.brand.toUpperCase()}
                 </strong>
                 <span>
-                  {store.name}: {formatPrice(store.pivot.price)}
+                  {store.name}: {store.price}
                 </span>
 
                 <button
