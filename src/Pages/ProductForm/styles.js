@@ -10,6 +10,14 @@ export const ProductList = styled.ul`
 
   padding: 30px 100px;
 
+  @media (max-width: 1213px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 750px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
   li {
     display: flex;
     flex-direction: column;
@@ -67,6 +75,33 @@ export const ProductList = styled.ul`
         text-align: center;
         font-weight: bold;
       }
+    }
+  }
+`;
+
+export const Pagination = styled.div`
+  padding-top: 15px;
+  display: flex;
+  align-items: center;
+  font-size: 32px;
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+
+  span {
+    color: #fff;
+  }
+
+  button {
+    margin: auto;
+    transition: opacity 0.25s ease-out;
+    border-radius: 4px;
+    outline: 0;
+    border: 0;
+    padding: 8px;
+    &:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
     }
   }
 `;

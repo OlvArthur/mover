@@ -11,6 +11,14 @@ export const ProductList = styled.ul`
   list-style: none;
 
   padding: 30px 100px;
+
+  @media (max-width: 1213px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 750px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
   ul {
     display: block;
   }
