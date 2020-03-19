@@ -13,6 +13,7 @@ export function* SearchRequest({ payload }) {
     const response = yield call(api.get, 'products', {
       params: {
         query,
+        page: 1,
       },
     });
 

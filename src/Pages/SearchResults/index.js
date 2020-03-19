@@ -8,31 +8,49 @@ import { Container, ProductList } from './styles';
 
 export default function SearchResults() {
   const dispatch = useDispatch();
-  const products = useSelector(state => state.search.products);
+  const cartState = useSelector(state => ({
+    products: state.search.products.map(product => ({
+      ...product,
+      description: product.description.toUpperCase(),
+      brand: product.brand.toUpperCase(),
+      stores: product.stores.map(store => ({
+        ...store,
+        price: formatPrice(store.pivot.price),
+      })),
+    })),
+  }));
 
-  function handleAddProduct(product, image) {
-    dispatch(addToCart(product, image));
+  function handleAddProduct(product, store) {
+    dispatch(addToCart(product, store));
   }
 
   return (
     <Container>
       <ProductList>
-        {products.map(product => (
-          <li key={product.id}>
-            <strong>
-              {product.description.toUpperCase()} {product.brand.toUpperCase()}
-            </strong>
-            <span>Jurunense: {formatPrice(product.Jurunense)}</span>
-            <span>Lojão do Pedreiro: {formatPrice(product.LP)}</span>
+        {cartState.products.map(product => (
+          <ul key={product.id}>
+            {product.stores.map(store => (
+              <li key={store.id}>
+                <strong>
+                  {product.description} {product.brand}
+                </strong>
+                <span>
+                  {store.name}: {store.price}
+                </span>
 
-            <button type="button" onClick={() => handleAddProduct(product)}>
-              <div>
-                <MdAddShoppingCart size={20} color="#FFF" /> 3
-              </div>
+                <button
+                  type="button"
+                  onClick={() => handleAddProduct(product, store)}
+                >
+                  <div>
+                    <MdAddShoppingCart size={20} color="#FFF" />
+                  </div>
 
-              <span>ADICIONAR AO CARRINHO</span>
-            </button>
-          </li>
+                  <span>ADICIONAR AO CARRINHO</span>
+                </button>
+              </li>
+            ))}
+          </ul>
         ))}
       </ProductList>
     </Container>

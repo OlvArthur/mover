@@ -11,12 +11,16 @@ export const ProductList = styled.ul`
   list-style: none;
 
   padding: 30px 100px;
+  ul {
+    display: block;
+  }
 
   li {
     display: flex;
     flex-direction: column;
     background: #fff;
     padding: 20px;
+    margin-top: 10px;
 
     img {
       align-self: center;
@@ -28,6 +32,7 @@ export const ProductList = styled.ul`
       line-height: 20px;
       color: #333;
       margin-top: 5px;
+      margin-bottom: 50px;
     }
 
     > span {
