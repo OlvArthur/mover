@@ -64,6 +64,7 @@ export default function Cart() {
       },
     ],
   })); */
+  const profile = useSelector(state => state.user.profile);
   const cartState = useSelector(state => ({
     stores: state.cart.stores.map(store => ({
       ...store,
@@ -92,7 +93,7 @@ export default function Cart() {
   }
 
   function isAvailable(products) {
-    dispatch(checkStockRequest(products));
+    dispatch(checkStockRequest(products, profile.email, profile.companyName));
   }
 
   function remove(productId, storeId) {

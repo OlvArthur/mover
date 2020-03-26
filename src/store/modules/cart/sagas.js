@@ -6,6 +6,8 @@ import { checkStockSucess } from './actions';
 export function* CheckStockRequest({ payload }) {
   const response = yield call(api.post, 'checkouts', {
     products: payload.products,
+    email: payload.userEmail,
+    companyName: payload.companyName,
   });
 
   yield put(checkStockSucess(response.data));
