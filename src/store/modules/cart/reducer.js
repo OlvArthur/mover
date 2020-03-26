@@ -90,7 +90,6 @@ export default function cart(state = INITIAL_STATE, action) {
       });
 
     case '@cart/CHECK_STOCK_SUCESS':
-      console.tron.log(action.payload.products);
       return state;
 
     default:
