@@ -87,10 +87,7 @@ class ProductForm extends Component {
             <ul key={product.id}>
               {product.stores.map(store => (
                 <li key={store.id}>
-                  <strong>
-                    {product.description.toUpperCase()}{' '}
-                    {product.brand.toUpperCase()}
-                  </strong>
+                  <strong>{product.description.toUpperCase()} </strong>
                   <span>
                     {store.name}: {store.price}
                   </span>
