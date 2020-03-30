@@ -18,52 +18,7 @@ import { Container, ProductTable, Total, Store } from './styles';
 
 export default function Cart() {
   const dispatch = useDispatch();
-  /* const cartState = useSelector(state => ({
-    stores: [
-      {
-        name: 'Jurunense',
-        products: state.cart.JProducts.map(product => ({
-          id: product.id,
-          amount: product.amount,
-          description: product.description,
-          price: formatPrice(product.price),
-          measure: product.measure,
-          subtotal: formatPrice(product.price * product.amount),
-        })),
-        total: state.cart.JProducts.reduce((total, product) => {
-          return total + product.price * product.amount;
-        }, 0),
-      },
-      {
-        name: 'Lojão do Pedreiro',
-        products: state.cart.LPProducts.map(product => ({
-          id: product.id,
-          amount: product.amount,
-          description: product.description,
-          price: formatPrice(product.price),
-          measure: product.measure,
-          subtotal: formatPrice(product.price * product.amount),
-        })),
-        total: state.cart.LPProducts.reduce((total, product) => {
-          return total + product.price * product.amount;
-        }, 0),
-      },
-      {
-        name: 'BelTubos',
-        products: state.cart.BTProducts.map(product => ({
-          id: product.id,
-          amount: product.amount,
-          description: product.description,
-          price: formatPrice(product.price),
-          measure: product.measure,
-          subtotal: formatPrice(product.price * product.amount),
-        })),
-        total: state.cart.BTProducts.reduce((total, product) => {
-          return total + product.price * product.amount;
-        }, 0),
-      },
-    ],
-  })); */
+
   const profile = useSelector(state => state.user.profile);
   const cartState = useSelector(state => ({
     stores: state.cart.stores.map(store => ({
@@ -92,8 +47,8 @@ export default function Cart() {
     dispatch(updateAmount(storeId, productId, amount));
   }
 
-  function isAvailable(products) {
-    dispatch(checkStockRequest(products, profile.email, profile.companyName));
+  function isAvailable(stores) {
+    dispatch(checkStockRequest(stores, profile.email, profile.companyName));
   }
 
   function remove(productId, storeId) {
@@ -172,10 +127,6 @@ export default function Cart() {
             ))}
           </ProductTable>
           <footer>
-            <button type="button" onClick={() => isAvailable(store.products)}>
-              <span>VERIFICAR DISPONIBILIDADE</span>
-            </button>
-
             <Total>
               <span>TOTAL</span>
               <strong>{formatPrice(store.total)}</strong>
@@ -183,6 +134,9 @@ export default function Cart() {
           </footer>
         </Store>
       ))}
+      <button type="button" onClick={() => isAvailable(cartState.stores)}>
+        <span>VERIFICAR DISPONIBILIDADE</span>
+      </button>
     </Container>
   );
 }

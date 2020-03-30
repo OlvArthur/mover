@@ -5,10 +5,30 @@ export const Container = styled.div`
   padding: 30px;
   border-radius: 4px;
   margin: 20px;
+
+  > button {
+    position: absolute;
+    right: 0%;
+    transform: translateY(80%) translateX(-30%);
+
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    padding: 12px 20px;
+    font-weight: bold;
+    background: #7159c1;
+    margin-bottom: 5px;
+    transition: background 0.2s;
+
+    &:hover {
+      background: ${darken(0.03, '#7159c1')};
+    }
+  }
 `;
 
 export const ProductTable = styled.table`
   width: 100%;
+  margin-bottom: 40px;
 
   thead th {
     color: #999;
@@ -69,6 +89,9 @@ export const ProductTable = styled.table`
 export const Total = styled.div`
   display: flex;
   align-items: baseline;
+
+  position: absolute;
+  right: 10%;
 
   span {
     color: #999;
