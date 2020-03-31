@@ -6,6 +6,7 @@ import {
   MdAddCircleOutline,
   MdDelete,
 } from 'react-icons/md';
+import { Input, Form } from '@rocketseat/unform';
 
 import {
   updateAmount,
@@ -14,7 +15,7 @@ import {
 } from '../../store/modules/cart/actions';
 import { formatPrice } from '../../utils/format';
 
-import { Container, ProductTable, Total, Store } from './styles';
+import { Container, ProductTable, Total, Store, Footer } from './styles';
 
 export default function Cart() {
   const dispatch = useDispatch();
@@ -134,9 +135,24 @@ export default function Cart() {
           </footer>
         </Store>
       ))}
-      <button type="button" onClick={() => isAvailable(cartState.stores)}>
-        <span>VERIFICAR DISPONIBILIDADE</span>
-      </button>
+
+      <Footer>
+        <Form>
+          <Input
+            name="adress"
+            required="required"
+            placeholder="Responsável no local"
+          />
+          <Input name="adress" required="required" placeholder="Bairro" />
+          <Input name="adress" required="required" placeholder="Rua" />
+          <Input name="adress" required="required" placeholder="Número" />
+          <Input name="adress" placeholder="Complemento" />
+          <Input name="adress" placeholder="Referência" />
+        </Form>
+        <button type="button" onClick={() => isAvailable(cartState.stores)}>
+          <span>VERIFICAR DISPONIBILIDADE</span>
+        </button>
+      </Footer>
     </Container>
   );
 }

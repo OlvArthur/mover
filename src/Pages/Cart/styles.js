@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { darken } from 'polished';
+import { Form } from '@rocketseat/unform';
 
 export const Container = styled.div`
   padding: 30px;
@@ -137,3 +138,42 @@ export const Store = styled.div`
     }
   }
 `;
+
+export const Footer = styled.footer`
+  display: flex;
+  flex: 1;
+  margin: 50px auto;
+
+  > button {
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+  form {
+    border: 1px solid green;
+    margin-left: auto;
+    width: 50%;
+
+    display: flex;
+    flex-direction: column;
+
+    font-size: 1.7rem;
+
+    input {
+      background: rgba(0, 0, 0, 0.1);
+      border: 0;
+      border-radius: 4px;
+      height: 44px;
+      padding: 0 15px;
+      color: #fff;
+      margin: 0 0 10px;
+
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.4);
+      }
+    }
+  }
+`;
+
+export const StyledForm = styled(Form)``;
