@@ -49,7 +49,6 @@ export default function Cart() {
   }
 
   function isAvailable(adressData, stores) {
-    console.tron.log(adressData);
     dispatch(
       checkStockRequest(adressData, stores, profile.email, profile.companyName)
     );
