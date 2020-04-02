@@ -5,7 +5,7 @@ import { connect, useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 
 import { Container, StyledForm } from './styles';
-import logo from '../../../assets/images/logo.png';
+import logo from '../../../assets/images/Logo.svg';
 
 import { SignUpRequest } from '../../../store/modules/auth/actions';
 
@@ -30,7 +30,7 @@ function SignUp() {
   return (
     <Container>
       <StyledForm schema={schema} onSubmit={handleSubmit}>
-        <img src={logo} alt="Intregra" />
+        <img src={logo} alt="Inobras" />
 
         <Input
           name="company"
