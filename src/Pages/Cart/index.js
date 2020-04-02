@@ -142,29 +142,21 @@ export default function Cart() {
       <Footer>
         <Form onSubmit={data => isAvailable(data, cartState.stores)}>
           <Input
-            name="Delivery Responsible"
+            name="deliveryResponsible"
             required="required"
             placeholder="Responsável no local"
           />
           <Input
-            name="phone-number"
+            name="phoneNumber"
             required="required"
             placeholder="Telefone de contato"
           />
           <Input name="district" required="required" placeholder="Bairro" />
           <Input name="street" required="required" placeholder="Rua" />
+          <Input name="streetNumber" required="required" placeholder="Número" />
+          <Input name="complement" placeholder="Complemento" />
           <Input
-            name="street-number"
-            required="required"
-            placeholder="Número"
-          />
-          <Input
-            name="Complement"
-            required="required"
-            placeholder="Complemento"
-          />
-          <Input
-            name="Reference"
+            name="reference"
             required="required"
             placeholder="Referência"
           />

@@ -11,7 +11,7 @@ toast.configure({
 export function* CheckStockRequest({ payload }) {
   try {
     const response = yield call(api.post, 'checkouts', {
-      addressData: payload.addressData,
+      adressData: payload.adressData,
       stores: payload.stores,
       email: payload.userEmail,
       companyName: payload.companyName,
