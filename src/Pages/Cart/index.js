@@ -148,7 +148,7 @@ export default function Cart() {
           <Input
             name="phoneNumber"
             required="required"
-            placeholder="Telefone de contato"
+            placeholder="Whatsapp ou Telegram para contato"
           />
           <Input name="district" required="required" placeholder="Bairro" />
           <Input name="street" required="required" placeholder="Rua" />
