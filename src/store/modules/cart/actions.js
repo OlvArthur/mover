@@ -19,10 +19,10 @@ export function updateAmount(storeId, productId, amount) {
   };
 }
 
-export function checkStockRequest(stores, userEmail, companyName) {
+export function checkStockRequest(adressData, stores, userEmail, companyName) {
   return {
     type: '@cart/CHECK_STOCK_REQUEST',
-    payload: { stores, userEmail, companyName },
+    payload: { adressData, stores, userEmail, companyName },
   };
 }
 

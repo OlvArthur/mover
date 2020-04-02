@@ -145,32 +145,64 @@ export const Footer = styled.footer`
   margin: 50px auto;
 
   > button {
-    margin-right: auto;
-    margin-top: auto;
-    margin-bottom: auto;
+    margin: auto;
+
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    padding: 22px 50px;
+    font-weight: bold;
+    background: #7159c1;
+    font-size: 1rem;
+    transition: background 0.2s;
+
+    &:hover {
+      background: ${darken(0.03, '#7159c1')};
+    }
   }
 
   form {
-    border: 1px solid green;
-    margin-left: auto;
     width: 50%;
 
-    display: flex;
-    flex-direction: column;
+    margin: 50px auto;
 
-    font-size: 1.7rem;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
 
     input {
       background: rgba(0, 0, 0, 0.1);
       border: 0;
       border-radius: 4px;
       height: 44px;
-      padding: 0 15px;
+      padding: 35px 15px;
       color: #fff;
-      margin: 0 0 10px;
+      margin: 0 0 30px;
+      font-size: 1.3rem;
+      max-width: 1500px;
+      margin-right: 25%;
+      margin-left: 25%;
 
       &::placeholder {
         color: rgba(255, 255, 255, 0.4);
+        font-size: 1.3rem;
+      }
+    }
+
+    > button {
+      margin: auto;
+
+      border: none;
+      border-radius: 4px;
+      color: #fff;
+      padding: 22px 50px;
+      font-weight: bold;
+      background: #7159c1;
+      font-size: 1rem;
+      transition: background 0.2s;
+
+      &:hover {
+        background: ${darken(0.03, '#7159c1')};
       }
     }
   }

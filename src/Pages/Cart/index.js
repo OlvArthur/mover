@@ -48,8 +48,11 @@ export default function Cart() {
     dispatch(updateAmount(storeId, productId, amount));
   }
 
-  function isAvailable(stores) {
-    dispatch(checkStockRequest(stores, profile.email, profile.companyName));
+  function isAvailable(adressData, stores) {
+    console.tron.log(adressData);
+    dispatch(
+      checkStockRequest(adressData, stores, profile.email, profile.companyName)
+    );
   }
 
   function remove(productId, storeId) {
@@ -137,21 +140,38 @@ export default function Cart() {
       ))}
 
       <Footer>
-        <Form>
+        <Form onSubmit={data => isAvailable(data, cartState.stores)}>
           <Input
-            name="adress"
+            name="Delivery Responsible"
             required="required"
             placeholder="Responsável no local"
           />
-          <Input name="adress" required="required" placeholder="Bairro" />
-          <Input name="adress" required="required" placeholder="Rua" />
-          <Input name="adress" required="required" placeholder="Número" />
-          <Input name="adress" placeholder="Complemento" />
-          <Input name="adress" placeholder="Referência" />
+          <Input
+            name="phone-number"
+            required="required"
+            placeholder="Telefone de contato"
+          />
+          <Input name="district" required="required" placeholder="Bairro" />
+          <Input name="street" required="required" placeholder="Rua" />
+          <Input
+            name="street-number"
+            required="required"
+            placeholder="Número"
+          />
+          <Input
+            name="Complement"
+            required="required"
+            placeholder="Complemento"
+          />
+          <Input
+            name="Reference"
+            required="required"
+            placeholder="Referência"
+          />
+          <button type="submit">
+            <span>VERIFICAR DISPONIBILIDADE</span>
+          </button>
         </Form>
-        <button type="button" onClick={() => isAvailable(cartState.stores)}>
-          <span>VERIFICAR DISPONIBILIDADE</span>
-        </button>
       </Footer>
     </Container>
   );
